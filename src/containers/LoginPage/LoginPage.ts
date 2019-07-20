@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { createSelector } from 'reselect';
 import { push } from 'connected-react-router';
-import { State } from '../../typings/state';
+import { State } from '../../typings/common';
 import LoginPage from '../../components/LoginPage/LoginPage';
 import { changeVariable } from '../../actions/action';
 

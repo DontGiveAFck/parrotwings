@@ -3,7 +3,7 @@ import {
 } from 'redux';
 import { History } from 'history';
 import { connectRouter } from 'connected-react-router';
-import { DefaultState, State } from '../typings/state';
+import { AuthState, State } from '../typings/common';
 import { variableReducer } from './reducer';
 
 export const defaultState = {

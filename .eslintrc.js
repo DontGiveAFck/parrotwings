@@ -27,7 +27,9 @@ module.exports = {
         "comma-dangle": "off",
         "import/no-extraneous-dependencies": "off",
         "react/jsx-indent-props": ["error", 4],
-        "react/sort-comp": "off"
+        "react/sort-comp": "off",
+        "import/prefer-default-export": "off",
+        "@typescript-eslint/no-unused-vars": "off"
     },
     "settings": {
         "react": {

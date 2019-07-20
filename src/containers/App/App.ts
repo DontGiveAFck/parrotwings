@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { createSelector } from 'reselect';
-import { State } from '../../typings/state';
+import { State } from '../../typings/common';
 import App, { AppProps } from '../../components/App/App';
 import { changeVariable } from '../../actions/action';
 
 const variableSelector = createSelector(
-    (state: State): boolean => state.default.variable,
+    (state: State): boolean => state,
     variable => ({
         variable
     })
