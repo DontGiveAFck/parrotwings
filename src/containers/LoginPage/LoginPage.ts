@@ -22,7 +22,7 @@ const mapStateToProps = (
 const mapDispatchToProps = (
     dispatch: Dispatch
 ) => ({
-    openRegistrationPageClick: (value: boolean) => dispatch(goToRegistrationPage())
+    openRegistrationPageClick: () => dispatch(goToRegistrationPage())
 });
 
 export default connect(

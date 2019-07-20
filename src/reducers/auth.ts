@@ -1,10 +1,8 @@
-import { push } from 'connected-react-router';
-import { Reducer } from 'redux';
-import { AuthPage, AuthPageState, State } from '../typings/common';
-import { Action } from '../actions/action';
-import { authPageState } from './rootReducer';
-import { REGISTRATION_URL } from '../constants/urls';
-import { GO_TO_REGISTRATION_PAGE } from '../actions/auth';
+import {Reducer} from 'redux';
+import {AuthField, AuthPage, AuthPageState, State} from '../typings/common';
+import {Action} from '../actions/action';
+import {authPageState} from './rootReducer';
+import {CHANGE_AUTH_FIELD, ChangeAuthField, GO_TO_LOGIN_PAGE, GO_TO_REGISTRATION_PAGE} from '../actions/auth';
 
 function goToRegistrationPage(
     state: AuthPageState,
@@ -13,6 +11,43 @@ function goToRegistrationPage(
     return {
         ...state,
         page: AuthPage.REGISTRATION
+    };
+}
+
+function goToLoginPage(
+    state: AuthPageState,
+    action: Action
+): AuthPageState {
+    return {
+        ...state,
+        page: AuthPage.LOGIN
+    };
+}
+
+function changeAuthField(
+    state: AuthPageState,
+    action: ChangeAuthField
+): AuthPageState {
+    const field = action.field.toUpperCase();
+    const newCredentials = {
+        ...state.credentials
+    };
+
+    if (field === AuthField.USERNAME) {
+        // @ts-ignore
+        newCredentials.username = action.value;
+    } else if (field === AuthField.EMAIL) {
+        newCredentials.email = action.value;
+    } else if (field === AuthField.PASSWORD) {
+        newCredentials.password = action.value;
+    }
+
+    return {
+        ...state,
+        page: AuthPage.LOGIN,
+        credentials: {
+            ...newCredentials
+        }
     };
 }
 
@@ -26,6 +61,10 @@ export const authReducer: Reducer<AuthPageState, Action> = (
     switch (action.type) {
         case GO_TO_REGISTRATION_PAGE:
             return goToRegistrationPage(state, action);
+        case GO_TO_LOGIN_PAGE:
+            return goToLoginPage(state, action);
+        case CHANGE_AUTH_FIELD:
+            return changeAuthField(state, action);
         default:
             return state;
     }

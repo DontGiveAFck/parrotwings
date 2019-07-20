@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { createSelector } from 'reselect';
 import { State } from '../../typings/common';
-import App, { AppProps } from '../../components/App/App';
+import App from '../../components/App/App';
 
 // const variableSelector = createSelector(
 //     (state: State): boolean => state,
@@ -23,7 +23,7 @@ const mapDispatchToProps = (
     // handleClick: (value: boolean) => dispatch(changeVariable(value))
 });
 
-export default connect<AppProps>(
+export default connect(
     // @ts-ignore
     mapStateToProps,
     mapDispatchToProps

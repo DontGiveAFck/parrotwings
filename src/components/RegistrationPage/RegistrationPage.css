@@ -1,11 +1,11 @@
-.LoginPage {
+.RegistrationPage {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     flex-direction: column;
 }
-.LoginPage-Form {
+.RegistrationPage-Form {
     transition-duration: 1000ms;
     width: 300px;
     background-color: #fff;
@@ -13,22 +13,25 @@
     border-radius: 5px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
-.LoginPage-Actions {
+.RegistrationPage-Actions {
     display: flex;
     flex-direction: column;
     width: 100%;
     align-items: baseline;
 }
-.LoginPage-Title {
+.RegistrationPage-Title {
     margin-bottom: 30px;
 
 }
-.LoginPage-OpenRegistrationBtn {
+.RegistrationPage-OpenRegistrationBtn {
     cursor: pointer;
     margin-left: 5px;
     font-weight: bold;
 }
-.LoginPage-RegistrationInfo {
+.RegistrationPage-RegistrationInfo {
     display: flex;
 }
-
+.RegistrationPage-SignUpButton {
+    display: flex;
+    justify-content: center;
+}

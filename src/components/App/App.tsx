@@ -7,15 +7,11 @@ import { Route, Switch } from 'react-router';
 import { Provider } from 'react-redux';
 import { history } from '../../store/configureStore';
 import LoginPage from '../../containers/LoginPage/LoginPage';
+import RegistrationPage from '../../containers/RegistrationPage/RegistrationPage';
 
 const BLOCK = cn('App');
 
-export interface AppProps {
-    handleClick: (event: any) => void;
-    variable: boolean;
-}
-
-class App extends Component<AppProps> {
+class App extends Component {
     render() {
         return (
             <div className={BLOCK()}>
@@ -25,7 +21,7 @@ class App extends Component<AppProps> {
                             <Route exact path="/" render={() => <LoginPage />} />
                         </Switch>
                         <Switch>
-                            <Route exact path="/login" render={() => <div>asd</div>} />
+                            <Route exact path="/registration" render={() => <RegistrationPage />} />
                         </Switch>
                     </>
                 </ConnectedRouter>

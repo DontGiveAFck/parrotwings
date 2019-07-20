@@ -22,3 +22,9 @@ export interface UserLogin {
     email: string,
     password: string,
 }
+
+export enum AuthField {
+    EMAIL = 'EMAIL',
+    PASSWORD = 'PASSWORD',
+    USERNAME = 'USERNAME'
+}
