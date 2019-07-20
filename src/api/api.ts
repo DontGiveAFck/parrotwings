@@ -4,7 +4,6 @@ const URL = 'http://193.124.114.46:3001';
 
 export default class {
     static async registration(credentials: UserRegistration) {
-        debugger
         const response = await fetch(`${URL}/users`, {
             method: 'POST',
             headers: {
