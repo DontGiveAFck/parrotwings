@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
 import { cn } from '@bem-react/classname';
+import { Header } from 'semantic-ui-react';
+import { ConnectedRouter } from 'connected-react-router';
+import { Route, Switch } from 'react-router';
+import { Provider } from 'react-redux';
+import { history } from '../../store/configureStore';
+import LoginPage from '../../containers/LoginPage/LoginPage';
 
 const BLOCK = cn('App');
 
@@ -13,37 +19,17 @@ class App extends Component<AppProps> {
     render() {
         return (
             <div className={BLOCK()}>
-                {this.getHeader()}
-                {this.getContent()}
+                <ConnectedRouter history={history}>
+                    <>
+                        <Switch>
+                            <Route exact path="/" render={() => <LoginPage />} />
+                        </Switch>
+                        <Switch>
+                            <Route exact path="/login" render={() => <div>asd</div>} />
+                        </Switch>
+                    </>
+                </ConnectedRouter>
             </div>
-        );
-    }
-
-    private getContent = () => {
-        return (
-            <div className={BLOCK('Content')}>
-                <button
-                    onClick={this.onButtonClick}
-                >
-                    Action
-                </button>
-            </div>
-        );
-    }
-
-    private onButtonClick = (event: any) => {
-        const {
-            variable,
-            handleClick
-        } = this.props;
-        handleClick(!variable);
-    }
-
-    private getHeader = () => {
-        return (
-            <header className={BLOCK('Header')}>
-                React boilerplate
-            </header>
         );
     }
 }

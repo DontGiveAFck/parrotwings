@@ -1,9 +1,10 @@
-import { createStore, combineReducers, Reducer, ReducersMapObject } from 'redux';
+import {
+    createStore, combineReducers, Reducer, ReducersMapObject
+} from 'redux';
 import { History } from 'history';
-import { DefaultState, State } from '../types/state';
-import { variableReducer } from './reducer';
 import { connectRouter } from 'connected-react-router';
-import { Action } from '../actions/action';
+import { DefaultState, State } from '../typings/state';
+import { variableReducer } from './reducer';
 
 export const defaultState = {
     variable: true

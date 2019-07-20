@@ -1,8 +1,9 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { createSelector } from 'reselect';
+import { push } from 'connected-react-router';
 import { State } from '../../typings/state';
-import App, { AppProps } from '../../components/App/App';
+import LoginPage from '../../components/LoginPage/LoginPage';
 import { changeVariable } from '../../actions/action';
 
 const variableSelector = createSelector(
@@ -21,11 +22,11 @@ const mapStateToProps = (
 const mapDispatchToProps = (
     dispatch: Dispatch
 ) => ({
-    handleClick: (value: boolean) => dispatch(changeVariable(value))
+    openRegistrationPageClick: (value: boolean) => dispatch(push('signup'))
 });
 
-export default connect<AppProps>(
-    // @ts-ignore
+export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(App);
+    // @ts-ignore
+)(LoginPage);

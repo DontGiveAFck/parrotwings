@@ -1,0 +1,1 @@
+export const ANIMATION_DURATION_AUTH_PAGE = 1000;
