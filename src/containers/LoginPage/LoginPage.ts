@@ -4,25 +4,25 @@ import { createSelector } from 'reselect';
 import { push } from 'connected-react-router';
 import { State } from '../../typings/common';
 import LoginPage from '../../components/LoginPage/LoginPage';
-import { changeVariable } from '../../actions/action';
+import { goToRegistrationPage } from '../../actions/auth';
 
-const variableSelector = createSelector(
-    (state: State): boolean => state.default.variable,
-    variable => ({
-        variable
-    })
-);
+// const variableSelector = createSelector(
+//     (state: State): boolean => state.default.variable,
+//     variable => ({
+//         variable
+//     })
+// );
 
 const mapStateToProps = (
     state: State
 ) => ({
-    ...variableSelector(state)
+    // ...variableSelector(state)
 });
 
 const mapDispatchToProps = (
     dispatch: Dispatch
 ) => ({
-    openRegistrationPageClick: (value: boolean) => dispatch(push('signup'))
+    openRegistrationPageClick: (value: boolean) => dispatch(goToRegistrationPage())
 });
 
 export default connect(

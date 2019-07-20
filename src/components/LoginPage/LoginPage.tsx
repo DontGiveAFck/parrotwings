@@ -17,7 +17,6 @@ interface LoginPageProps {
 class LoginPage extends Component<LoginPageProps> {
     state = {
         loginFormVisible: false,
-        registrationFormVisible: false
     };
 
     render() {
@@ -28,7 +27,6 @@ class LoginPage extends Component<LoginPageProps> {
             >
                 {this.getTitle()}
                 {this.getLoginForm()}
-                {this.getRegistrationForm()}
             </div>
         );
     }
@@ -47,7 +45,7 @@ class LoginPage extends Component<LoginPageProps> {
 
     private getLoginForm = () => {
         const { loginFormVisible } = this.state;
-
+        const { openRegistrationPageClick } = this.props;
         return (
             <Transition visible={loginFormVisible} animation="fade" duration={ANIMATION_DURATION_AUTH_PAGE}>
                 <div className={BLOCK('Form')}>
@@ -67,36 +65,15 @@ class LoginPage extends Component<LoginPageProps> {
                             <div className={BLOCK('Actions')}>
                                 <div className={BLOCK('RegistrationInfo')}>
                                     <span>Don&apos;t have an account?</span>
-                                    <a className={BLOCK('OpenRegistrationBtn')}> Sign up</a>
+                                    <a
+                                        className={BLOCK('OpenRegistrationBtn')}
+                                        onClick={openRegistrationPageClick}
+                                    >
+                                        Sign up
+                                    </a>
                                 </div>
                             </div>
                         </Form.Field>
-                    </Form>
-                </div>
-            </Transition>
-        );
-    };
-
-    private getRegistrationForm = () => {
-        const { registrationFormVisible } = this.state;
-
-        return (
-            <Transition visible={registrationFormVisible} animation="fly left" duration={ANIMATION_DURATION_AUTH_PAGE}>
-                <div className={BLOCK('Form')}>
-                    <Form>
-                        <Form.Field>
-                            <label htmlFor="email-input">E-mail</label>
-                            <input id="email-input" type="email" placeholder="Enter e-mail" />
-                        </Form.Field>
-                        <Form.Field>
-                            <label>Password</label>
-                            <input type="password" placeholder="Enter password" />
-                        </Form.Field>
-                        <div className={BLOCK('Actions')}>
-                            <Button type="submit" color="instagram">Let me in!</Button>
-                            <span>Don&apos;t have an account?</span>
-                            <a className={BLOCK('OpenRegistrationBtn')}> Sign up</a>
-                        </div>
                     </Form>
                 </div>
             </Transition>

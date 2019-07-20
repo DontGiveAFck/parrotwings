@@ -1,29 +1,30 @@
 import { push } from 'connected-react-router';
 import { Reducer } from 'redux';
-import { AuthState, State } from '../typings/common';
-import { Action, CHANGE_VARIABLE } from '../actions/action';
-import { defaultState } from './rootReducer';
-import {REGISTRATION_URL} from "../constants/urls";
+import { AuthPage, AuthPageState, State } from '../typings/common';
+import { Action } from '../actions/action';
+import { authPageState } from './rootReducer';
+import { REGISTRATION_URL } from '../constants/urls';
+import { GO_TO_REGISTRATION_PAGE } from '../actions/auth';
 
 function goToRegistrationPage(
-    state: AuthState,
+    state: AuthPageState,
     action: Action
-): AuthState {
-    push(REGISTRATION_URL);
+): AuthPageState {
     return {
         ...state,
-    }
+        page: AuthPage.REGISTRATION
+    };
 }
 
 // TODO - избавиться от tsignore
 // @ts-ignore
-export const authReducer: Reducer<AuthState, Action> = (
-    state: AuthState = defaultState,
+export const authReducer: Reducer<AuthPageState, Action> = (
+    state: AuthPageState = authPageState,
     action: Action,
     fullState: State
-): AuthState => {
-    switch (action.type){
-        case CHANGE_VARIABLE:
+): AuthPageState => {
+    switch (action.type) {
+        case GO_TO_REGISTRATION_PAGE:
             return goToRegistrationPage(state, action);
         default:
             return state;

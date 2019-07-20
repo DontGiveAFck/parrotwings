@@ -29,7 +29,8 @@ module.exports = {
         "react/jsx-indent-props": ["error", 4],
         "react/sort-comp": "off",
         "import/prefer-default-export": "off",
-        "@typescript-eslint/no-unused-vars": "off"
+        "@typescript-eslint/no-unused-vars": "off",
+        "import/no-cycle": "off"
     },
     "settings": {
         "react": {

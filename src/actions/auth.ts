@@ -20,15 +20,12 @@ type GO_TO_REGISTRATION_PAGE = typeof GO_TO_REGISTRATION_PAGE;
 
 export interface GoToRegistrationPage {
     type: GO_TO_REGISTRATION_PAGE;
-    value: boolean;
 }
 
 export function goToRegistrationPage(
-    value: boolean
 ): GoToRegistrationPage {
     return {
         type: GO_TO_REGISTRATION_PAGE,
-        value
     };
 }
 

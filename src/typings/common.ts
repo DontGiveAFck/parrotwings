@@ -1,8 +1,8 @@
 export interface State {
-    auth: AuthState;
+    auth: AuthPageState;
 }
 
-export interface AuthState {
+export interface AuthPageState {
     page: AuthPage,
     credentials: UserRegistration | UserLogin
 }
