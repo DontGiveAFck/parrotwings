@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import { cn } from '@bem-react/classname';
 
@@ -28,8 +28,8 @@ class App extends Component<AppProps> {
                     Action
                 </button>
             </div>
-        )
-    };
+        );
+    }
 
     private onButtonClick = (event: any) => {
         const {
@@ -37,7 +37,7 @@ class App extends Component<AppProps> {
             handleClick
         } = this.props;
         handleClick(!variable);
-    };
+    }
 
     private getHeader = () => {
         return (
@@ -45,7 +45,7 @@ class App extends Component<AppProps> {
                 React boilerplate
             </header>
         );
-    };
+    }
 }
 
 export default App;

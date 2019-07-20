@@ -17,7 +17,7 @@ const mapStateToProps = (
 ) => {
     return {
         ...variableSelector(state)
-    }
+    };
 };
 
 const mapDispatchToProps = (
@@ -25,7 +25,7 @@ const mapDispatchToProps = (
 ) => {
     return {
         handleClick: (value: boolean) => dispatch(changeVariable(value))
-    }
+    };
 };
 
 export default connect<AppProps>(

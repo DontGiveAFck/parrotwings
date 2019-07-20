@@ -1,8 +1,8 @@
-import {createStore, combineReducers, Reducer, ReducersMapObject} from "redux";
-import {DefaultState, State} from '../types/state'
-import {variableReducer} from '../reducers/reducer';
-import {connectRouter} from 'connected-react-router'
-import {Action} from "../actions/action";
+import { createStore, combineReducers, Reducer, ReducersMapObject } from 'redux';
+import { DefaultState, State } from '../types/state';
+import { variableReducer } from '../reducers/reducer';
+import { connectRouter } from 'connected-react-router';
+import { Action } from '../actions/action';
 import { History } from 'history';
 export const defaultState = {
     variable: true
@@ -17,11 +17,4 @@ export type LoadedReducers = Partial<Reducers>;
 export default (history: History) => combineReducers({
     router: connectRouter(history),
     default: variableReducer
-})
-
-// export const store = createStore(
-//     rootReducer,
-//     initialState,
-    // (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__()
-// );
-
+});

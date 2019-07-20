@@ -11,8 +11,8 @@ export function changeVariable(
 ): ChangeVariable {
     return {
         type: CHANGE_VARIABLE,
-        value: value
-    }
+        value
+    };
 }
 
 export type Action =
