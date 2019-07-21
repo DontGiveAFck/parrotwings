@@ -69,6 +69,8 @@ class RegistrationPage extends Component<RegistrationPageProps> {
                             <Form.Input
                                 id="email-input"
                                 type="email"
+                                icon="mail"
+                                iconPosition="left"
                                 placeholder="Enter e-mail"
                                 onChange={
                                     e => this.changeEmailField(AuthField.EMAIL, e.target.value)
@@ -79,7 +81,9 @@ class RegistrationPage extends Component<RegistrationPageProps> {
                         </Form.Field>
                         <Form.Field>
                             <label>Username</label>
-                            <input
+                            <Form.Input
+                                icon="user"
+                                iconPosition="left"
                                 type="text"
                                 placeholder="Enter username"
                                 onChange={e => onChangeAuthField(
@@ -90,7 +94,9 @@ class RegistrationPage extends Component<RegistrationPageProps> {
                         </Form.Field>
                         <Form.Field>
                             <label>Password</label>
-                            <input
+                            <Form.Input
+                                icon="lock"
+                                iconPosition="left"
                                 type="password"
                                 placeholder="Enter password"
                                 onChange={e => onChangeAuthField(

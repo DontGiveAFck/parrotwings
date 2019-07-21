@@ -1,0 +1,32 @@
+.ProfilePage {
+    height: 100vh;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    opacity: .8;
+}
+
+.ProfilePage-Container {
+    height: 100%;
+    width: 100%;
+    padding-top: 30px;
+}
+
+.ProfilePage-UserInfo {
+    display: flex;
+    justify-content: center;
+}
+
+.ProfilePage-Logout {
+    color: red;
+    font-size: 16px;
+}
+
+.ProfilePage-Balance {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.ProfilePage-SendButton {
+    width: 100%;
+}

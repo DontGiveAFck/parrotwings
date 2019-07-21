@@ -3,8 +3,14 @@ import {
 } from 'redux';
 import { History } from 'history';
 import { connectRouter } from 'connected-react-router';
-import { AuthPage, AuthPageState, State } from '../typings/common';
+import {
+    AuthPage,
+    AuthPageState,
+    Profile,
+    State, TransactionModalData
+} from '../typings/common';
 import { authReducer } from './auth';
+import { profileReducer } from './profile';
 
 export const authPageState: AuthPageState = {
     page: AuthPage.LOGIN,
@@ -14,8 +20,25 @@ export const authPageState: AuthPageState = {
         password: ''
     }
 };
+
+export const profileState: Profile = {
+    userInfo: {
+        name: '',
+        balance: 0
+    },
+    transactionsInfo: {},
+    isLoading: false,
+    transactionModalOpened: false,
+    transactionModalData: {
+        name: '',
+        amount: 0,
+        suggestedUsersList: []
+    }
+};
+
 export const initialState: State = {
-    auth: authPageState
+    auth: authPageState,
+    profile: profileState
 };
 
 export type Reducers = ReducersMapObject<State>;
@@ -23,5 +46,6 @@ export type LoadedReducers = Partial<Reducers>;
 
 export default (history: History) => combineReducers({
     router: connectRouter(history),
-    auth: authReducer
+    auth: authReducer,
+    profile: profileReducer
 });

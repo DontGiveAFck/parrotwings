@@ -1,5 +1,6 @@
 export interface State {
     auth: AuthPageState;
+    profile: Profile;
 }
 
 export interface AuthPageState {
@@ -28,4 +29,24 @@ export enum AuthField {
 
 export interface AuthResponse {
     status: string;
+}
+
+export interface UserInfo {
+    balance: number;
+    name: string;
+}
+
+export interface TransactionModalData {
+    name: string;
+    amount: number;
+    suggestedUsersList: [];
+}
+
+export interface Profile {
+    userInfo: UserInfo;
+    // TODO - transactionInfo добавить интерфейс
+    transactionsInfo: any;
+    isLoading: boolean;
+    transactionModalOpened: boolean;
+    transactionModalData: TransactionModalData;
 }

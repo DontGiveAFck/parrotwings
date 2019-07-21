@@ -68,6 +68,8 @@ class LoginPage extends Component<LoginPageProps> {
                         <Form.Field>
                             <label htmlFor="email-input">E-mail</label>
                             <Form.Input
+                                icon="mail"
+                                iconPosition="left"
                                 required
                                 id="email-input"
                                 type="email"
@@ -81,7 +83,9 @@ class LoginPage extends Component<LoginPageProps> {
                         </Form.Field>
                         <Form.Field>
                             <label>Password</label>
-                            <input
+                            <Form.Input
+                                icon="lock"
+                                iconPosition="left"
                                 type="password"
                                 placeholder="Enter password"
                                 onChange={

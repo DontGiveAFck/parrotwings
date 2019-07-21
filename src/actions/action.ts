@@ -6,6 +6,15 @@ import {
     UserAuthFailure,
     UserAuthSuccess
 } from './auth';
+import {
+    ChangeTransactionAmount, ChangeTransactionName,
+    CloseTransactionModal,
+    FetchProfileData,
+    FetchProfileDataFailure,
+    FetchProfileDataSuccess,
+    OpenTransactionModal,
+    UpdateSuggestedUsersList
+} from './profile';
 
 export type Action =
     | GoToLoginPage
@@ -14,4 +23,12 @@ export type Action =
     | UserAuthSuccess
     | UserAuthFailure
     | Login
+    | FetchProfileData
+    | FetchProfileDataSuccess
+    | FetchProfileDataFailure
+    | OpenTransactionModal
+    | CloseTransactionModal
+    | ChangeTransactionAmount
+    | ChangeTransactionName
+    | UpdateSuggestedUsersList
     | GoToRegistrationPage;

@@ -8,6 +8,6 @@ export default class {
         const valueFromStorage = localStorage.getItem(key);
         return valueFromStorage === null
             ? null
-            : JSON.parse(valueFromStorage);
+            : valueFromStorage;
     }
 }
