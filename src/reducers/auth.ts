@@ -1,8 +1,12 @@
-import {Reducer} from 'redux';
-import {AuthField, AuthPage, AuthPageState, State} from '../typings/common';
-import {Action} from '../actions/action';
-import {authPageState} from './rootReducer';
-import {CHANGE_AUTH_FIELD, ChangeAuthField, GO_TO_LOGIN_PAGE, GO_TO_REGISTRATION_PAGE} from '../actions/auth';
+import { Reducer } from 'redux';
+import {
+    AuthField, AuthPage, AuthPageState, State
+} from '../typings/common';
+import { Action } from '../actions/action';
+import { authPageState } from './rootReducer';
+import {
+    CHANGE_AUTH_FIELD, ChangeAuthField, GO_TO_LOGIN_PAGE, GO_TO_REGISTRATION_PAGE
+} from '../actions/auth';
 
 function goToRegistrationPage(
     state: AuthPageState,
@@ -10,7 +14,12 @@ function goToRegistrationPage(
 ): AuthPageState {
     return {
         ...state,
-        page: AuthPage.REGISTRATION
+        page: AuthPage.REGISTRATION,
+        credentials: {
+            username: '',
+            email: '',
+            password: ''
+        }
     };
 }
 
@@ -20,7 +29,12 @@ function goToLoginPage(
 ): AuthPageState {
     return {
         ...state,
-        page: AuthPage.LOGIN
+        page: AuthPage.LOGIN,
+        credentials: {
+            username: '',
+            email: '',
+            password: ''
+        }
     };
 }
 
@@ -34,7 +48,6 @@ function changeAuthField(
     };
 
     if (field === AuthField.USERNAME) {
-        // @ts-ignore
         newCredentials.username = action.value;
     } else if (field === AuthField.EMAIL) {
         newCredentials.email = action.value;

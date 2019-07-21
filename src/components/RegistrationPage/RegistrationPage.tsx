@@ -7,7 +7,7 @@ import { cn } from '@bem-react/classname';
 import Header from 'semantic-ui-react/dist/commonjs/elements/Header';
 import background from '../../assets/images/bg-start-o.jpg';
 import { ANIMATION_DURATION_AUTH_PAGE } from '../../constants/numberConstants';
-import {AuthField, UserRegistration} from '../../typings/common';
+import { AuthField, UserRegistration } from '../../typings/common';
 
 const BLOCK = cn('RegistrationPage');
 
@@ -147,7 +147,7 @@ class RegistrationPage extends Component<RegistrationPageProps> {
             password,
             username
         });
-    }
+    };
 }
 
 export default RegistrationPage;
