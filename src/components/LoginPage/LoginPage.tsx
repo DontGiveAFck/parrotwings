@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import './LoginPage.css';
 import {
-    Button, Form, Transition
+    Button, Form, Transition, Message
 } from 'semantic-ui-react';
 import { cn } from '@bem-react/classname';
 import Header from 'semantic-ui-react/dist/commonjs/elements/Header';
+import * as EmailValidator from 'email-validator';
 import background from '../../assets/images/bg-start-o.jpg';
 import { ANIMATION_DURATION_AUTH_PAGE } from '../../constants/numberConstants';
 import { AuthField, UserRegistration } from '../../typings/common';
+import { changeAuthField } from '../../actions/auth';
 
 const BLOCK = cn('LoginPage');
 
@@ -17,18 +19,24 @@ interface LoginPageProps {
     email: string;
     onChangeAuthField: (field: AuthField, value: string) => void;
     onLoginButtonClick: (credentials: UserRegistration) => void;
+    errorText?: string;
 }
 
 class LoginPage extends Component<LoginPageProps> {
     state = {
         loginFormVisible: false,
+        loginButtonActive: true
     };
 
     render() {
         return (
             <div
                 className={BLOCK()}
-                style={{ backgroundImage: `url(${background})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}
+                style={{
+                    backgroundImage: `url(${background})`,
+                    backgroundSize: 'cover',
+                    backgroundRepeat: 'no-repeat'
+                }}
             >
                 {this.getTitle()}
                 {this.getLoginForm()}
@@ -49,19 +57,26 @@ class LoginPage extends Component<LoginPageProps> {
     }
 
     private getLoginForm = () => {
-        const { loginFormVisible } = this.state;
-        const { openRegistrationPageClick, onChangeAuthField } = this.props;
+        const { loginFormVisible, loginButtonActive } = this.state;
+        const {
+            openRegistrationPageClick, onChangeAuthField, email, errorText
+        } = this.props;
         return (
             <Transition visible={loginFormVisible} animation="fade" duration={ANIMATION_DURATION_AUTH_PAGE}>
                 <div className={BLOCK('Form')}>
-                    <Form>
+                    <Form error={Boolean(errorText)}>
                         <Form.Field>
                             <label htmlFor="email-input">E-mail</label>
-                            <input
+                            <Form.Input
+                                required
                                 id="email-input"
                                 type="email"
                                 placeholder="Enter e-mail"
-                                onChange={e => onChangeAuthField(AuthField.EMAIL, e.target.value)}
+                                onChange={
+                                    e => this.changeEmailField(AuthField.EMAIL, e.target.value)
+                                }
+                                onBlur={this.emailValidate}
+                                error={!loginButtonActive}
                             />
                         </Form.Field>
                         <Form.Field>
@@ -79,6 +94,7 @@ class LoginPage extends Component<LoginPageProps> {
                                 type="submit"
                                 color="instagram"
                                 onClick={this.loginButtonClick}
+                                disabled={!loginButtonActive}
                             >
                                 Let me in!
                             </Button>
@@ -96,6 +112,11 @@ class LoginPage extends Component<LoginPageProps> {
                                 </div>
                             </div>
                         </Form.Field>
+                        <Message
+                            error
+                            header="Authorisation Error"
+                            content={errorText}
+                        />
                     </Form>
                 </div>
             </Transition>
@@ -126,6 +147,27 @@ class LoginPage extends Component<LoginPageProps> {
             email,
             password
         });
+    };
+
+    private emailValidate = () => {
+        const { email } = this.props;
+        if (!EmailValidator.validate(email)) {
+            this.setState({
+                loginButtonActive: false
+            });
+        } else {
+            this.setState({
+                loginButtonActive: true
+            });
+        }
+    };
+
+    private changeEmailField = (field: AuthField, value: string) => {
+        const { onChangeAuthField } = this.props;
+        this.setState({
+            loginButtonActive: true
+        });
+        onChangeAuthField(field, value);
     };
 }
 

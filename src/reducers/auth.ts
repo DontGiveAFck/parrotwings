@@ -5,7 +5,12 @@ import {
 import { Action } from '../actions/action';
 import { authPageState } from './rootReducer';
 import {
-    CHANGE_AUTH_FIELD, ChangeAuthField, GO_TO_LOGIN_PAGE, GO_TO_REGISTRATION_PAGE
+    CHANGE_AUTH_FIELD,
+    ChangeAuthField,
+    GO_TO_LOGIN_PAGE,
+    GO_TO_REGISTRATION_PAGE,
+    USER_AUTH_FAILURE,
+    UserAuthFailure
 } from '../actions/auth';
 
 function goToRegistrationPage(
@@ -19,7 +24,8 @@ function goToRegistrationPage(
             username: '',
             email: '',
             password: ''
-        }
+        },
+        errorText: ''
     };
 }
 
@@ -34,7 +40,8 @@ function goToLoginPage(
             username: '',
             email: '',
             password: ''
-        }
+        },
+        errorText: ''
     };
 }
 
@@ -64,6 +71,16 @@ function changeAuthField(
     };
 }
 
+function setAuthErrorText(
+    state: AuthPageState,
+    action: UserAuthFailure
+): AuthPageState {
+    return {
+        ...state,
+        errorText: action.errorText
+    };
+}
+
 // TODO - избавиться от tsignore
 // @ts-ignore
 export const authReducer: Reducer<AuthPageState, Action> = (
@@ -78,6 +95,8 @@ export const authReducer: Reducer<AuthPageState, Action> = (
             return goToLoginPage(state, action);
         case CHANGE_AUTH_FIELD:
             return changeAuthField(state, action);
+        case USER_AUTH_FAILURE:
+            return setAuthErrorText(state, action);
         default:
             return state;
     }

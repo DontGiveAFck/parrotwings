@@ -10,10 +10,12 @@ const variableSelector = createSelector(
     // @ts-ignore
     (state: State): string => state.auth.credentials.email,
     (state: State): string => state.auth.credentials.password,
-    (email, password) => {
+    (state: State): string | undefined => state.auth.errorText,
+    (email, password, errorText) => {
         return ({
             email,
-            password
+            password,
+            errorText
         });
     }
 );

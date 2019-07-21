@@ -4,7 +4,8 @@ export interface State {
 
 export interface AuthPageState {
     page: AuthPage,
-    credentials: UserRegistration
+    credentials: UserRegistration,
+    errorText?: string
 }
 
 export enum AuthPage {

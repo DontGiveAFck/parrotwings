@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import './RegistrationPage.css';
 import {
-    Button, Form, Transition
+    Button, Form, Message, Transition
 } from 'semantic-ui-react';
 import { cn } from '@bem-react/classname';
 import Header from 'semantic-ui-react/dist/commonjs/elements/Header';
+import * as EmailValidator from 'email-validator';
 import background from '../../assets/images/bg-start-o.jpg';
 import { ANIMATION_DURATION_AUTH_PAGE } from '../../constants/numberConstants';
 import { AuthField, UserRegistration } from '../../typings/common';
@@ -18,11 +19,13 @@ export interface RegistrationPageProps {
     username: string;
     password: string;
     email: string;
+    errorText?: string;
 }
 
 class RegistrationPage extends Component<RegistrationPageProps> {
     state = {
-        registrationFormVisible: false
+        registrationFormVisible: false,
+        registrationButtonActive: true
     };
 
     render() {
@@ -50,23 +53,28 @@ class RegistrationPage extends Component<RegistrationPageProps> {
     }
 
     private getRegistrationForm = () => {
-        const { registrationFormVisible } = this.state;
+        const { registrationFormVisible, registrationButtonActive } = this.state;
         const {
             openLoginPageClick,
             registrationButtonClick,
-            onChangeAuthField
+            onChangeAuthField,
+            errorText
         } = this.props;
         return (
             <Transition visible={registrationFormVisible} animation="fade" duration={ANIMATION_DURATION_AUTH_PAGE}>
                 <div className={BLOCK('Form')}>
-                    <Form>
+                    <Form error={Boolean(errorText)}>
                         <Form.Field>
                             <label htmlFor="email-input">E-mail</label>
-                            <input
+                            <Form.Input
                                 id="email-input"
                                 type="email"
                                 placeholder="Enter e-mail"
-                                onChange={e => onChangeAuthField(AuthField.EMAIL, e.target.value)}
+                                onChange={
+                                    e => this.changeEmailField(AuthField.EMAIL, e.target.value)
+                                }
+                                onBlur={() => this.emailValidate()}
+                                error={!registrationButtonActive}
                             />
                         </Form.Field>
                         <Form.Field>
@@ -97,6 +105,7 @@ class RegistrationPage extends Component<RegistrationPageProps> {
                                     type="submit"
                                     color="instagram"
                                     onClick={this.onRegistrationButtonClick}
+                                    disabled={!registrationButtonActive}
                                 >
                                     Sign up and login
                                 </Button>
@@ -115,6 +124,11 @@ class RegistrationPage extends Component<RegistrationPageProps> {
                                 </div>
                             </div>
                         </Form.Field>
+                        <Message
+                            error
+                            header="Registration Error"
+                            content={errorText}
+                        />
                     </Form>
                 </div>
             </Transition>
@@ -127,7 +141,7 @@ class RegistrationPage extends Component<RegistrationPageProps> {
         return (
             <Transition visible={registrationFormVisible} animation="fade" duration={1000}>
                 <div className={BLOCK('Title')}>
-                    <Header as="h1">Sign up</Header>
+                    <Header as="h1">Join us!</Header>
                 </div>
             </Transition>
 
@@ -147,6 +161,27 @@ class RegistrationPage extends Component<RegistrationPageProps> {
             password,
             username
         });
+    };
+
+    private emailValidate = () => {
+        const { email } = this.props;
+        if (!EmailValidator.validate(email)) {
+            this.setState({
+                registrationButtonActive: false
+            });
+        } else {
+            this.setState({
+                registrationButtonActive: true
+            });
+        }
+    };
+
+    private changeEmailField = (field: AuthField, value: string) => {
+        const { onChangeAuthField } = this.props;
+        this.setState({
+            registrationButtonActive: true
+        });
+        onChangeAuthField(field, value);
     };
 }
 

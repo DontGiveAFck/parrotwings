@@ -46,7 +46,7 @@ export const registrationEpic = (
             LocalStorage.setValue('id_token', idToken);
             return userAuthSuccess(idToken);
         }),
-        catchError(error => of(userAuthFailure(error.toString())))
+        catchError(error => of(userAuthFailure(error.message)))
     )),
 );
 
@@ -60,6 +60,6 @@ export const loginEpic = (
             LocalStorage.setValue('id_token', idToken);
             return userAuthSuccess(idToken);
         }),
-        catchError(error => of(userAuthFailure(error.toString())))
+        catchError(error => of(userAuthFailure(error.message)))
     )),
 );
