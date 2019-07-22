@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, {Component, RefObject} from 'react';
 import './TransactionModal.css';
 import { cn } from '@bem-react/classname';
 import {
-    Modal, Button, Header, Icon, Input, Form, Dropdown
+    Modal, Button, Header, Icon, Input, Form, Dropdown, DropdownProps
 } from 'semantic-ui-react';
 import { AuthField, TransactionModalData } from '../../typings/common';
 
@@ -18,6 +18,9 @@ interface TransactionModalProps {
 }
 
 class TransactionModal extends Component<TransactionModalProps> {
+
+    private dropdownRef: RefObject<Component<DropdownProps, any, any>> = React.createRef();
+
     render() {
         const {
             transactionModalOpened,
@@ -33,7 +36,7 @@ class TransactionModal extends Component<TransactionModalProps> {
 
         const mappedUsersList = suggestedUsersList
         // @ts-ignore
-            .map(user => ({ key: user.id, value: user.id, text: user.name }));
+            .map(user => ({ key: user.id, value: user.name, text: user.name }));
         return (
             <div
                 className={BLOCK()}
@@ -53,7 +56,8 @@ class TransactionModal extends Component<TransactionModalProps> {
                                         (e, value) => changeTransactionName(value.searchQuery)
                                     }
                                     options={mappedUsersList}
-                                    onChange={(e, value) => console.log(value)}
+                                    onChange={this.getValue.bind(this)}
+                                    ref={this.dropdownRef}
                                 />
                             </Form.Field>
                             <Form.Field>
@@ -89,6 +93,11 @@ class TransactionModal extends Component<TransactionModalProps> {
         const { createTransaction, transactionModalData } = this.props;
         const { name, amount } = transactionModalData;
         createTransaction(name, amount);
+    };
+
+    private getValue = (e: any, { value } : any) => {
+        const { changeTransactionName } = this.props;
+        changeTransactionName(value);
     };
 }
 

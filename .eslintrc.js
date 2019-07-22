@@ -30,7 +30,8 @@ module.exports = {
         "react/sort-comp": "off",
         "import/prefer-default-export": "off",
         "@typescript-eslint/no-unused-vars": "off",
-        "import/no-cycle": "off"
+        "import/no-cycle": "off",
+        "react/jsx-no-bind": "off"
     },
     "settings": {
         "react": {

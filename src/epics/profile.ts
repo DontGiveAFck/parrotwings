@@ -1,6 +1,6 @@
 import { ActionsObservable, ofType } from 'redux-observable';
 import { catchError, map, mergeMap } from 'rxjs/operators';
-import { of, forkJoin } from 'rxjs';
+import { of, forkJoin, concat } from 'rxjs';
 import { Action } from '../actions/action';
 import { REGISTRATION, userAuthFailure, userAuthSuccess } from '../actions/auth';
 import API from '../api/api';
@@ -47,7 +47,7 @@ export const createTransactionEpic = (
 ) => action$.pipe(
     ofType(CREATE_TRANSACTION),
     mergeMap((action: CreateTransaction) => API.createTransaction(action.name, action.amount).pipe(
-        map(res => of(fetchProfileData(), closeTransactionModal())),
+        mergeMap(() => of(fetchProfileData(), closeTransactionModal())),
         // TODO - change error func
         catchError(error => of(userAuthFailure(error.message)))
     )),
