@@ -40,13 +40,39 @@ export interface TransactionModalData {
     name: string;
     amount: number;
     suggestedUsersList: [];
+    errorText?: string;
 }
 
 export interface Profile {
     userInfo: UserInfo;
-    // TODO - transactionInfo добавить интерфейс
-    transactionsInfo: any;
+    transactionsInfo: TransactionInfo[];
     isLoading: boolean;
     transactionModalOpened: boolean;
     transactionModalData: TransactionModalData;
+    transactionsSortType: TransactionsSortColumn;
+}
+
+export interface TransactionInfo {
+    amount: number
+    balance: number
+    date: string
+    id: number
+    username: string;
+}
+
+export enum TransactionsSortColumn {
+    Date = 'Date',
+    Name = 'Name',
+    Amount = 'Amount',
+}
+
+export enum TransactionsSortType {
+    INC = 'INC',
+    DEC = 'DEC'
+}
+
+export enum TransactionsFilterType {
+    DATE = 'DATE',
+    NAME = 'NAME',
+    AMOUNT = 'AMOUNT',
 }

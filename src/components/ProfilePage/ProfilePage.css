@@ -3,7 +3,6 @@
     justify-content: center;
     display: flex;
     align-items: center;
-    opacity: .8;
 }
 
 .ProfilePage-Container {
@@ -29,4 +28,10 @@
 
 .ProfilePage-SendButton {
     width: 100%;
+}
+
+.ProfilePage-Sort {
+    width: 200px;
+    display: flex;
+    align-items: center;
 }

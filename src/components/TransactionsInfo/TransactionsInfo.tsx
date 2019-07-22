@@ -6,27 +6,21 @@ import {
     Transition,
     Card,
     Icon,
-    Table
+    Table,
+    Button
 } from 'semantic-ui-react';
 import background from '../../assets/images/profile-bg.jpg';
-import { UserInfo } from '../../typings/common';
+import { TransactionInfo, UserInfo } from '../../typings/common';
 
 const BLOCK = cn('TransactionsInfo');
 
 interface TransactionsInfoProps {
+    transactionsInfo: TransactionInfo[];
+    openTransactionModal: (name: string, amount: number) => void;
 }
 
 class TransactionsInfo extends Component<TransactionsInfoProps> {
-    state = {
-        componentVisibile: false
-    };
-
-    componentDidMount(): void {
-    }
-
     render() {
-        const { componentVisibile } = this.state;
-
         return (
             <div
                 className={BLOCK()}
@@ -36,155 +30,59 @@ class TransactionsInfo extends Component<TransactionsInfoProps> {
         );
     }
 
-    private getTableRow = () => {
+    private getTableRow = (transactionRow: TransactionInfo) => {
+        const {
+            id,
+            balance,
+            amount,
+            date,
+            username
+        } = transactionRow;
 
-    }
+        const { openTransactionModal } = this.props;
+
+        return (
+            <Table.Row key={id} positive={amount > 0} negative={amount < 0}>
+                <Table.Cell>{date}</Table.Cell>
+                <Table.Cell>{username}</Table.Cell>
+                <Table.Cell>{amount} PW</Table.Cell>
+                <Table.Cell>{balance} PW</Table.Cell>
+                <Table.Cell>
+                    <Button
+                        color="green"
+                        onClick={() => openTransactionModal(username, Math.abs(amount))}
+                    >
+                        Use as template
+                    </Button>
+                </Table.Cell>
+            </Table.Row>
+        );
+    };
+
+    private getTableEmptyRow = () => (
+        <Table.Row>
+            <Table.Cell>No transactions</Table.Cell>
+        </Table.Row>
+    );
 
     private getTable = () => {
+        const { transactionsInfo } = this.props;
         return (
-            <Table striped selectable>
+            <Table selectable textAlign="center">
                 <Table.Header>
                     <Table.Row>
-                        <Table.HeaderCell>Name</Table.HeaderCell>
-                        <Table.HeaderCell>Date Joined</Table.HeaderCell>
-                        <Table.HeaderCell>E-mail</Table.HeaderCell>
-                        <Table.HeaderCell>Called</Table.HeaderCell>
+                        <Table.HeaderCell>Date/Time of the transaction</Table.HeaderCell>
+                        <Table.HeaderCell>Correspondent name</Table.HeaderCell>
+                        <Table.HeaderCell>Transaction amount</Table.HeaderCell>
+                        <Table.HeaderCell>Resulting balance</Table.HeaderCell>
+                        <Table.HeaderCell>Actions</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
 
                 <Table.Body>
-                    <Table.Row>
-                        <Table.Cell>John Lilki</Table.Cell>
-                        <Table.Cell>September 14, 2013</Table.Cell>
-                        <Table.Cell>jhlilk22@yahoo.com</Table.Cell>
-                        <Table.Cell>No</Table.Cell>
-                    </Table.Row>
-                    <Table.Row>
-                        <Table.Cell>Jamie Harington</Table.Cell>
-                        <Table.Cell>January 11, 2014</Table.Cell>
-                        <Table.Cell>jamieharingonton@yahoo.com</Table.Cell>
-                        <Table.Cell>Yes</Table.Cell>
-                    </Table.Row>
-                    <Table.Row>
-                        <Table.Cell>Jill Lewis</Table.Cell>
-                        <Table.Cell>May 11, 2014</Table.Cell>
-                        <Table.Cell>jilsewris22@yahoo.com</Table.Cell>
-                        <Table.Cell>Yes</Table.Cell>
-                    </Table.Row>
-                    <Table.Row>
-                        <Table.Cell>John Lilki</Table.Cell>
-                        <Table.Cell>September 14, 2013</Table.Cell>
-                        <Table.Cell>jhlilk22@yahoo.com</Table.Cell>
-                        <Table.Cell>No</Table.Cell>
-                    </Table.Row>
-                    <Table.Row>
-                        <Table.Cell>John Lilki</Table.Cell>
-                        <Table.Cell>September 14, 2013</Table.Cell>
-                        <Table.Cell>jhlilk22@yahoo.com</Table.Cell>
-                        <Table.Cell>No</Table.Cell>
-                    </Table.Row>
-                    <Table.Row>
-                        <Table.Cell>Jamie Harington</Table.Cell>
-                        <Table.Cell>January 11, 2014</Table.Cell>
-                        <Table.Cell>jamieharingonton@yahoo.com</Table.Cell>
-                        <Table.Cell>Yes</Table.Cell>
-                    </Table.Row>
-                    <Table.Row>
-                        <Table.Cell>Jill Lewis</Table.Cell>
-                        <Table.Cell>May 11, 2014</Table.Cell>
-                        <Table.Cell>jilsewris22@yahoo.com</Table.Cell>
-                        <Table.Cell>Yes</Table.Cell>
-                    </Table.Row>
-                    <Table.Row>
-                        <Table.Cell>John Lilki</Table.Cell>
-                        <Table.Cell>September 14, 2013</Table.Cell>
-                        <Table.Cell>jhlilk22@yahoo.com</Table.Cell>
-                        <Table.Cell>No</Table.Cell>
-                    </Table.Row>
-                    <Table.Row>
-                        <Table.Cell>John Lilki</Table.Cell>
-                        <Table.Cell>September 14, 2013</Table.Cell>
-                        <Table.Cell>jhlilk22@yahoo.com</Table.Cell>
-                        <Table.Cell>No</Table.Cell>
-                    </Table.Row>
-                    <Table.Row>
-                        <Table.Cell>John Lilki</Table.Cell>
-                        <Table.Cell>September 14, 2013</Table.Cell>
-                        <Table.Cell>jhlilk22@yahoo.com</Table.Cell>
-                        <Table.Cell>No</Table.Cell>
-                    </Table.Row>
-                    <Table.Row>
-                        <Table.Cell>John Lilki</Table.Cell>
-                        <Table.Cell>September 14, 2013</Table.Cell>
-                        <Table.Cell>jhlilk22@yahoo.com</Table.Cell>
-                        <Table.Cell>No</Table.Cell>
-                    </Table.Row>
-                    <Table.Row>
-                        <Table.Cell>John Lilki</Table.Cell>
-                        <Table.Cell>September 14, 2013</Table.Cell>
-                        <Table.Cell>jhlilk22@yahoo.com</Table.Cell>
-                        <Table.Cell>No</Table.Cell>
-                    </Table.Row>
-                    <Table.Row>
-                        <Table.Cell>John Lilki</Table.Cell>
-                        <Table.Cell>September 14, 2013</Table.Cell>
-                        <Table.Cell>jhlilk22@yahoo.com</Table.Cell>
-                        <Table.Cell>No</Table.Cell>
-                    </Table.Row>
-                    <Table.Row>
-                        <Table.Cell>John Lilki</Table.Cell>
-                        <Table.Cell>September 14, 2013</Table.Cell>
-                        <Table.Cell>jhlilk22@yahoo.com</Table.Cell>
-                        <Table.Cell>No</Table.Cell>
-                    </Table.Row>
-                    <Table.Row>
-                        <Table.Cell>John Lilki</Table.Cell>
-                        <Table.Cell>September 14, 2013</Table.Cell>
-                        <Table.Cell>jhlilk22@yahoo.com</Table.Cell>
-                        <Table.Cell>No</Table.Cell>
-                    </Table.Row>
-                    <Table.Row>
-                        <Table.Cell>John Lilki</Table.Cell>
-                        <Table.Cell>September 14, 2013</Table.Cell>
-                        <Table.Cell>jhlilk22@yahoo.com</Table.Cell>
-                        <Table.Cell>No</Table.Cell>
-                    </Table.Row>
-                    <Table.Row>
-                        <Table.Cell>John Lilki</Table.Cell>
-                        <Table.Cell>September 14, 2013</Table.Cell>
-                        <Table.Cell>jhlilk22@yahoo.com</Table.Cell>
-                        <Table.Cell>No</Table.Cell>
-                    </Table.Row>
-                    <Table.Row>
-                        <Table.Cell>John Lilki</Table.Cell>
-                        <Table.Cell>September 14, 2013</Table.Cell>
-                        <Table.Cell>jhlilk22@yahoo.com</Table.Cell>
-                        <Table.Cell>No</Table.Cell>
-                    </Table.Row>
-                    <Table.Row>
-                        <Table.Cell>John Lilki</Table.Cell>
-                        <Table.Cell>September 14, 2013</Table.Cell>
-                        <Table.Cell>jhlilk22@yahoo.com</Table.Cell>
-                        <Table.Cell>No</Table.Cell>
-                    </Table.Row>
-                    <Table.Row>
-                        <Table.Cell>John Lilki</Table.Cell>
-                        <Table.Cell>September 14, 2013</Table.Cell>
-                        <Table.Cell>jhlilk22@yahoo.com</Table.Cell>
-                        <Table.Cell>No</Table.Cell>
-                    </Table.Row>
-                    <Table.Row>
-                        <Table.Cell>John Lilki</Table.Cell>
-                        <Table.Cell>September 14, 2013</Table.Cell>
-                        <Table.Cell>jhlilk22@yahoo.com</Table.Cell>
-                        <Table.Cell>No</Table.Cell>
-                    </Table.Row>
-                    <Table.Row>
-                        <Table.Cell>John Lilki</Table.Cell>
-                        <Table.Cell>September 14, 2013</Table.Cell>
-                        <Table.Cell>jhlilk22@yahoo.com</Table.Cell>
-                        <Table.Cell>No</Table.Cell>
-                    </Table.Row>
+                    {transactionsInfo.length === 0
+                        ? this.getTableEmptyRow()
+                        : transactionsInfo.map(row => this.getTableRow(row))}
                 </Table.Body>
             </Table>
         );

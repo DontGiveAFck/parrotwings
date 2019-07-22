@@ -10,4 +10,8 @@ export default class {
             ? null
             : valueFromStorage;
     }
+
+    static removeValue(key: any) {
+        localStorage.removeItem(key);
+    }
 }

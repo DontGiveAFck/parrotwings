@@ -136,7 +136,6 @@ class LoginPage extends Component<LoginPageProps> {
                     <Header as="h1">Welcome to Parrot Wings!</Header>
                 </div>
             </Transition>
-
         );
     };
 

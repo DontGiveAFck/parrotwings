@@ -1,4 +1,4 @@
-import { UserInfo } from '../typings/common';
+import {TransactionInfo, UserInfo} from '../typings/common';
 
 export const FETCH_PROFILE_DATA = 'FETCH_PROFILE_DATA';
 type FETCH_PROFILE_DATA = typeof FETCH_PROFILE_DATA;
@@ -20,17 +20,17 @@ type FETCH_PROFILE_DATA_SUCCESS = typeof FETCH_PROFILE_DATA_SUCCESS;
 export interface FetchProfileDataSuccess {
     type: FETCH_PROFILE_DATA_SUCCESS;
     userInfo: UserInfo;
-    trasactionsInfo: any;
+    transactionsInfo: TransactionInfo[];
 }
 
 export function fetchProfileDataSuccess(
     userInfo: UserInfo,
-    trasactionsInfo: any
+    transactionsInfo: TransactionInfo[]
 ): FetchProfileDataSuccess {
     return {
         type: FETCH_PROFILE_DATA_SUCCESS,
         userInfo,
-        trasactionsInfo
+        transactionsInfo
     };
 }
 
@@ -156,5 +156,36 @@ export function createTransaction(
         type: CREATE_TRANSACTION,
         name,
         amount
+    };
+}
+
+export const LOGOUT = 'LOGOUT';
+type LOGOUT = typeof LOGOUT;
+
+export interface Logout {
+    type: LOGOUT;
+}
+
+export function logout(
+): Logout {
+    return {
+        type: LOGOUT,
+    };
+}
+
+export const CREATE_TRANSACTION_FAILURE = 'CREATE_TRANSACTION_FAILURE';
+type CREATE_TRANSACTION_FAILURE = typeof CREATE_TRANSACTION_FAILURE;
+
+export interface CreateTransactionFailure {
+    type: CREATE_TRANSACTION_FAILURE;
+    errorText: string;
+}
+
+export function createTransactionFailure(
+    errorText: string
+): CreateTransactionFailure {
+    return {
+        type: CREATE_TRANSACTION_FAILURE,
+        errorText
     };
 }

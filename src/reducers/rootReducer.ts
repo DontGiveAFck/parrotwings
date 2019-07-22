@@ -1,16 +1,9 @@
-import {
-    createStore, combineReducers, Reducer, ReducersMapObject
-} from 'redux';
-import { History } from 'history';
-import { connectRouter } from 'connected-react-router';
-import {
-    AuthPage,
-    AuthPageState,
-    Profile,
-    State, TransactionModalData
-} from '../typings/common';
-import { authReducer } from './auth';
-import { profileReducer } from './profile';
+import {combineReducers, ReducersMapObject} from 'redux';
+import {History} from 'history';
+import {connectRouter} from 'connected-react-router';
+import {AuthPage, AuthPageState, Profile, State, TransactionsSortColumn} from '../typings/common';
+import {authReducer} from './auth';
+import {profileReducer} from './profile';
 
 export const authPageState: AuthPageState = {
     page: AuthPage.LOGIN,
@@ -26,14 +19,15 @@ export const profileState: Profile = {
         name: '',
         balance: 0
     },
-    transactionsInfo: {},
+    transactionsInfo: [],
     isLoading: false,
     transactionModalOpened: false,
     transactionModalData: {
         name: '',
         amount: 0,
         suggestedUsersList: []
-    }
+    },
+    transactionsSortType: TransactionsSortColumn.Date
 };
 
 export const initialState: State = {

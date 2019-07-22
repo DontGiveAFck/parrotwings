@@ -1,8 +1,8 @@
-import React, {Component, RefObject} from 'react';
+import React, { Component, RefObject } from 'react';
 import './TransactionModal.css';
 import { cn } from '@bem-react/classname';
 import {
-    Modal, Button, Header, Icon, Input, Form, Dropdown, DropdownProps
+    Modal, Button, Header, Icon, Input, Form, Dropdown, DropdownProps, Message
 } from 'semantic-ui-react';
 import { AuthField, TransactionModalData } from '../../typings/common';
 
@@ -18,7 +18,6 @@ interface TransactionModalProps {
 }
 
 class TransactionModal extends Component<TransactionModalProps> {
-
     private dropdownRef: RefObject<Component<DropdownProps, any, any>> = React.createRef();
 
     render() {
@@ -30,7 +29,9 @@ class TransactionModal extends Component<TransactionModalProps> {
             changeTransactionAmount,
             createTransaction
         } = this.props;
-        const { name, amount, suggestedUsersList } = transactionModalData;
+        const {
+            name, amount, suggestedUsersList, errorText = ''
+        } = transactionModalData;
 
         // TODO - вынести отсюда и переделать
 
@@ -42,13 +43,14 @@ class TransactionModal extends Component<TransactionModalProps> {
                 className={BLOCK()}
             >
                 <Modal open={transactionModalOpened} closeIcon closeOnDocumentClick>
-                    <Header icon="archive" content="Archive Old Messages" />
+                    <Header icon="money" content="Create new transaction" />
                     <Modal.Content>
-                        <Form>
+                        <Form error={Boolean(errorText)}>
                             <Form.Field>
-                                <label htmlFor="email-input">Name</label>
+                                <label htmlFor="dropdown">Name</label>
                                 <Dropdown
-                                    placeholder="Select user"
+                                    id="dropdown"
+                                    placeholder="Write name and select user"
                                     fluid
                                     search
                                     selection
@@ -56,18 +58,25 @@ class TransactionModal extends Component<TransactionModalProps> {
                                         (e, value) => changeTransactionName(value.searchQuery)
                                     }
                                     options={mappedUsersList}
-                                    onChange={this.getValue.bind(this)}
+                                    onChange={this.onSelectTransactionName.bind(this)}
                                     ref={this.dropdownRef}
+                                    text={name}
                                 />
                             </Form.Field>
                             <Form.Field>
                                 <label htmlFor="email-input">Amount</label>
                                 <Form.Input
-                                    value={amount}
+                                    value={amount || ''}
                                     placeholder="Amount"
+                                    type="number"
                                     onChange={e => changeTransactionAmount(Number(e.target.value))}
                                 />
                             </Form.Field>
+                            <Message
+                                error
+                                header="Transaction error"
+                                content={errorText}
+                            />
                         </Form>
                     </Modal.Content>
                     <Modal.Actions>
@@ -95,7 +104,7 @@ class TransactionModal extends Component<TransactionModalProps> {
         createTransaction(name, amount);
     };
 
-    private getValue = (e: any, { value } : any) => {
+    private onSelectTransactionName = (e: any, { value } : any) => {
         const { changeTransactionName } = this.props;
         changeTransactionName(value);
     };

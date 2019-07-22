@@ -5,11 +5,21 @@ import {
     Container,
     Card,
     Icon,
-    Button
+    Button, Transition,
+    Dimmer,
+    Loader,
+    Dropdown
 } from 'semantic-ui-react';
-import {TransactionModalData, UserInfo} from '../../typings/common';
+import {
+    TransactionInfo,
+    TransactionModalData,
+    TransactionsSortColumn,
+    TransactionsSortType,
+    UserInfo
+} from '../../typings/common';
 import TransactionsInfo from '../TransactionsInfo/TransactionsInfo';
 import TransactionModal from '../TransactionModal/TransactionModal';
+import { sortColumnsOptions, sortTypesOptions } from '../../constants/declarations';
 
 const BLOCK = cn('ProfilePage');
 
@@ -17,14 +27,15 @@ interface ProfilePageProps {
     fetchProfileData: () => void;
     isLoading: boolean;
     userInfo: UserInfo;
-    transactionsInfo: any;
+    transactionsInfo: TransactionInfo[];
     transactionModalOpened: boolean;
-    openTransactionModal: () => void;
+    openTransactionModal: (name?: string, amount?: number) => void;
     closeTransactionModal: () => void;
     transactionModalData: TransactionModalData;
     changeTransactionName: (name: string) => void;
     changeTransactionAmount: (amount: number) => void;
     createTransaction: (name: string, amount: number) => void;
+    logout: () => void;
 }
 
 class ProfilePage extends Component<ProfilePageProps> {
@@ -40,33 +51,63 @@ class ProfilePage extends Component<ProfilePageProps> {
             transactionModalData,
             changeTransactionName,
             changeTransactionAmount,
-            createTransaction
+            createTransaction,
+            transactionsInfo,
+            openTransactionModal,
+            isLoading
         } = this.props;
 
         return (
             <div
                 className={BLOCK()}
             >
-                <div className={BLOCK('Container')}>
-                    <Container>
-                        {this.getUserInfo()}
-                        <TransactionsInfo />
-                        <TransactionModal
-                            transactionModalOpened={transactionModalOpened}
-                            closeTransactionModal={closeTransactionModal}
-                            transactionModalData={transactionModalData}
-                            changeTransactionName={changeTransactionName}
-                            changeTransactionAmount={changeTransactionAmount}
-                            createTransaction={createTransaction}
-                        />
-                    </Container>
-                </div>
+                <Dimmer active={isLoading}>
+                    <Loader size="massive">Loading</Loader>
+                </Dimmer>
+                {!isLoading && (
+                    <div className={BLOCK('Container')}>
+                        <Container>
+                            {this.getUserInfo()}
+                            {this.getSortOptions()}
+                            <TransactionsInfo
+                                transactionsInfo={transactionsInfo}
+                                openTransactionModal={openTransactionModal}
+                            />
+                            <TransactionModal
+                                transactionModalOpened={transactionModalOpened}
+                                closeTransactionModal={closeTransactionModal}
+                                transactionModalData={transactionModalData}
+                                changeTransactionName={changeTransactionName}
+                                changeTransactionAmount={changeTransactionAmount}
+                                createTransaction={createTransaction}
+                            />
+                        </Container>
+                    </div>
+                )}
             </div>
         );
     }
 
+    private getSortOptions = () => (
+        <div className={BLOCK('Sort')}>
+            <div>Sort</div>
+            <Dropdown
+                fluid
+                selection
+                options={sortColumnsOptions}
+                defaultValue={TransactionsSortColumn.Date}
+            />
+            <Dropdown
+                fluid
+                selection
+                options={sortTypesOptions}
+                defaultValue={TransactionsSortType.DEC}
+            />
+        </div>
+    );
+
     private getUserInfo = () => {
-        const { userInfo, openTransactionModal } = this.props;
+        const { userInfo, openTransactionModal, logout } = this.props;
         const {
             name,
             balance
@@ -82,8 +123,7 @@ class ProfilePage extends Component<ProfilePageProps> {
                         <Card.Description>
                             <span className={BLOCK('Balance')}>
                                 Balance:&nbsp;
-                                { balance }
-                                PW
+                                { balance } PW
                             </span>
                         </Card.Description>
                     </Card.Content>
@@ -92,12 +132,14 @@ class ProfilePage extends Component<ProfilePageProps> {
                             <Button
                                 color="instagram"
                                 className="SendButton"
-                                onClick={openTransactionModal}
-                            > Send PW </Button>
+                                onClick={() => openTransactionModal()}
+                            >
+                                Send PW
+                            </Button>
                         </div>
                     </Card.Content>
                     <Card.Content extra>
-                        <a>
+                        <a onClick={logout}>
                             <Icon name="power off" />
                             <span className={BLOCK('Logout')}>Logout</span>
                         </a>

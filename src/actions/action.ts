@@ -8,7 +8,7 @@ import {
 } from './auth';
 import {
     ChangeTransactionAmount, ChangeTransactionName,
-    CloseTransactionModal,
+    CloseTransactionModal, CreateTransactionFailure,
     FetchProfileData,
     FetchProfileDataFailure,
     FetchProfileDataSuccess,
@@ -31,4 +31,5 @@ export type Action =
     | ChangeTransactionAmount
     | ChangeTransactionName
     | UpdateSuggestedUsersList
+    | CreateTransactionFailure
     | GoToRegistrationPage;

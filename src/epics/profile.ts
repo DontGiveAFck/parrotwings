@@ -9,10 +9,11 @@ import {
     CHANGE_TRANSACTION_NAME,
     ChangeTransactionName, CREATE_TRANSACTION, CreateTransaction,
     FETCH_PROFILE_DATA, fetchProfileData, FetchProfileData,
-    fetchProfileDataSuccess, updateSuggestedUsersList,
-    closeTransactionModal
+    fetchProfileDataSuccess, updateSuggestedUsersList, createTransactionFailure,
+    closeTransactionModal, LOGOUT, Logout
 } from '../actions/profile';
 import { mapUserInfo } from '../services/mappers';
+import {push} from "connected-react-router";
 
 export const fetchProfileDataEpic = (
     action$: ActionsObservable<FetchProfileData>
@@ -24,7 +25,8 @@ export const fetchProfileDataEpic = (
     ).pipe(
         map(res => {
             const userInfo = mapUserInfo(res[0].data.user_info_token);
-            return fetchProfileDataSuccess(userInfo, {});
+            const transactionsInfo = res[1].data.trans_token;
+            return fetchProfileDataSuccess(userInfo, transactionsInfo);
         }),
         // TODO - change error func
         catchError(error => of(userAuthFailure(error.message)))
@@ -49,6 +51,16 @@ export const createTransactionEpic = (
     mergeMap((action: CreateTransaction) => API.createTransaction(action.name, action.amount).pipe(
         mergeMap(() => of(fetchProfileData(), closeTransactionModal())),
         // TODO - change error func
-        catchError(error => of(userAuthFailure(error.message)))
+        catchError(error => of(createTransactionFailure(error.message)))
     )),
+);
+
+export const logoutEpic = (
+    action$: ActionsObservable<Logout>
+) => action$.pipe(
+    ofType(LOGOUT),
+    mergeMap(action => {
+        LocalStorage.removeValue('id_token');
+        return of(push('/'));
+    })
 );
