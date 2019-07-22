@@ -14,6 +14,7 @@ interface TransactionModalProps {
     transactionModalData: TransactionModalData;
     changeTransactionName: (name: string) => void;
     changeTransactionAmount: (amount: number) => void;
+    createTransaction: (name: string, amount: number) => void;
 }
 
 class TransactionModal extends Component<TransactionModalProps> {
@@ -23,7 +24,8 @@ class TransactionModal extends Component<TransactionModalProps> {
             closeTransactionModal,
             transactionModalData,
             changeTransactionName,
-            changeTransactionAmount
+            changeTransactionAmount,
+            createTransaction
         } = this.props;
         const { name, amount, suggestedUsersList } = transactionModalData;
 
@@ -36,14 +38,14 @@ class TransactionModal extends Component<TransactionModalProps> {
             <div
                 className={BLOCK()}
             >
-                <Modal open={transactionModalOpened} closeIcon>
+                <Modal open={transactionModalOpened} closeIcon closeOnDocumentClick>
                     <Header icon="archive" content="Archive Old Messages" />
                     <Modal.Content>
                         <Form>
                             <Form.Field>
                                 <label htmlFor="email-input">Name</label>
                                 <Dropdown
-                                    placeholder="Select Country"
+                                    placeholder="Select user"
                                     fluid
                                     search
                                     selection
@@ -51,6 +53,7 @@ class TransactionModal extends Component<TransactionModalProps> {
                                         (e, value) => changeTransactionName(value.searchQuery)
                                     }
                                     options={mappedUsersList}
+                                    onChange={(e, value) => console.log(value)}
                                 />
                             </Form.Field>
                             <Form.Field>
@@ -68,7 +71,10 @@ class TransactionModal extends Component<TransactionModalProps> {
                             <Icon name="remove" />
                             Cancel
                         </Button>
-                        <Button color="green">
+                        <Button
+                            color="green"
+                            onClick={this.onConfirmButtonClick}
+                        >
                             <Icon name="checkmark" />
                             Confirm
                         </Button>
@@ -77,6 +83,13 @@ class TransactionModal extends Component<TransactionModalProps> {
             </div>
         );
     }
+
+
+    private onConfirmButtonClick = () => {
+        const { createTransaction, transactionModalData } = this.props;
+        const { name, amount } = transactionModalData;
+        createTransaction(name, amount);
+    };
 }
 
 export default TransactionModal;

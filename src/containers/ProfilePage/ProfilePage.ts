@@ -6,7 +6,14 @@ import {
     AuthField, State, TransactionModalData, UserInfo, UserRegistration
 } from '../../typings/common';
 import ProfilePage from '../../components/ProfilePage/ProfilePage';
-import { closeTransactionModal, fetchProfileData, openTransactionModal, changeTransactionName, changeTransactionAmount } from '../../actions/profile';
+import {
+    closeTransactionModal,
+    fetchProfileData,
+    openTransactionModal,
+    changeTransactionName,
+    changeTransactionAmount,
+    createTransaction
+} from '../../actions/profile';
 
 
 // TODO - разделить селекторы
@@ -45,7 +52,8 @@ const mapDispatchToProps = (
     openTransactionModal: () => dispatch(openTransactionModal()),
     closeTransactionModal: () => dispatch(closeTransactionModal()),
     changeTransactionName: (name: string) => dispatch(changeTransactionName(name)),
-    changeTransactionAmount: (amount: number) => dispatch(changeTransactionAmount(amount))
+    changeTransactionAmount: (amount: number) => dispatch(changeTransactionAmount(amount)),
+    createTransaction: (name: string, amount: number) => dispatch(createTransaction(name, amount))
 });
 
 export default connect(

@@ -24,6 +24,7 @@ interface ProfilePageProps {
     transactionModalData: TransactionModalData;
     changeTransactionName: (name: string) => void;
     changeTransactionAmount: (amount: number) => void;
+    createTransaction: (name: string, amount: number) => void;
 }
 
 class ProfilePage extends Component<ProfilePageProps> {
@@ -33,13 +34,13 @@ class ProfilePage extends Component<ProfilePageProps> {
     }
 
     render() {
-        console.log('render')
         const {
             transactionModalOpened,
             closeTransactionModal,
             transactionModalData,
             changeTransactionName,
-            changeTransactionAmount
+            changeTransactionAmount,
+            createTransaction
         } = this.props;
 
         return (
@@ -56,9 +57,9 @@ class ProfilePage extends Component<ProfilePageProps> {
                             transactionModalData={transactionModalData}
                             changeTransactionName={changeTransactionName}
                             changeTransactionAmount={changeTransactionAmount}
+                            createTransaction={createTransaction}
                         />
                     </Container>
-
                 </div>
             </div>
         );

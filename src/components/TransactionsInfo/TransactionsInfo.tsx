@@ -43,7 +43,7 @@ class TransactionsInfo extends Component<TransactionsInfoProps> {
     private getTable = () => {
         return (
             <Table striped selectable>
-                <Table.Header fixed>
+                <Table.Header>
                     <Table.Row>
                         <Table.HeaderCell>Name</Table.HeaderCell>
                         <Table.HeaderCell>Date Joined</Table.HeaderCell>

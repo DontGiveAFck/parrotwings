@@ -7,9 +7,10 @@ import API from '../api/api';
 import LocalStorage from '../services/LocalStorage';
 import {
     CHANGE_TRANSACTION_NAME,
-    ChangeTransactionName,
-    FETCH_PROFILE_DATA, FetchProfileData,
-    fetchProfileDataSuccess, updateSuggestedUsersList
+    ChangeTransactionName, CREATE_TRANSACTION, CreateTransaction,
+    FETCH_PROFILE_DATA, fetchProfileData, FetchProfileData,
+    fetchProfileDataSuccess, updateSuggestedUsersList,
+    closeTransactionModal
 } from '../actions/profile';
 import { mapUserInfo } from '../services/mappers';
 
@@ -41,3 +42,13 @@ export const fetchFilteredUsersListEpic = (
     )),
 );
 
+export const createTransactionEpic = (
+    action$: ActionsObservable<CreateTransaction>
+) => action$.pipe(
+    ofType(CREATE_TRANSACTION),
+    mergeMap((action: CreateTransaction) => API.createTransaction(action.name, action.amount).pipe(
+        map(res => of(fetchProfileData(), closeTransactionModal())),
+        // TODO - change error func
+        catchError(error => of(userAuthFailure(error.message)))
+    )),
+);

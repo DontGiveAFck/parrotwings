@@ -1,4 +1,4 @@
-import {UserInfo} from "../typings/common";
+import { UserInfo } from '../typings/common';
 
 export const FETCH_PROFILE_DATA = 'FETCH_PROFILE_DATA';
 type FETCH_PROFILE_DATA = typeof FETCH_PROFILE_DATA;
@@ -139,3 +139,22 @@ export function changeTransactionAmount(
     };
 }
 
+export const CREATE_TRANSACTION = 'CREATE_TRANSACTION';
+type CREATE_TRANSACTION = typeof CREATE_TRANSACTION;
+
+export interface CreateTransaction {
+    type: CREATE_TRANSACTION;
+    name: string;
+    amount: number;
+}
+
+export function createTransaction(
+    name: string,
+    amount: number
+): CreateTransaction {
+    return {
+        type: CREATE_TRANSACTION,
+        name,
+        amount
+    };
+}

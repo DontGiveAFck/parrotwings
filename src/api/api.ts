@@ -107,4 +107,28 @@ export default class {
 
         return fromPromise(request);
     }
+
+    static createTransaction(name: string, amount: number) {
+        const tokenId = LocalStorage.getValue('id_token');
+        const request = fetch(`${URL}/api/protected/transactions`, {
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${tokenId}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name,
+                amount
+            })
+        }).then(res => {
+            if (res.ok) {
+                return res.json()
+                    .then(json => ({status: 'ok', data: json}));
+            } else {
+                return res.text().then(text => {throw Error(text)});
+            }
+        })
+
+        return fromPromise(request);
+    }
 }

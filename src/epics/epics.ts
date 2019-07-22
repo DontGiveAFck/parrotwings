@@ -7,7 +7,7 @@ import {
     loginEpic
 } from './auth';
 
-import { fetchProfileDataEpic, fetchFilteredUsersListEpic } from './profile';
+import { fetchProfileDataEpic, fetchFilteredUsersListEpic, createTransactionEpic } from './profile';
 
 export default combineEpics(
     goToRegistrationPage,
@@ -16,5 +16,6 @@ export default combineEpics(
     goToProfilePage,
     loginEpic,
     fetchProfileDataEpic,
-    fetchFilteredUsersListEpic
+    fetchFilteredUsersListEpic,
+    createTransactionEpic
 );
