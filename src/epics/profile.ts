@@ -27,7 +27,6 @@ export const fetchProfileDataEpic = (
             const transactionsInfo = res[1].data.trans_token;
             return fetchProfileDataSuccess(userInfo, transactionsInfo);
         }),
-        // TODO - change error func
         catchError(error => of(logout(), push('/'), userAuthFailure(error.message)))
     )),
 );
@@ -38,7 +37,6 @@ export const fetchFilteredUsersListEpic = (
     ofType(CHANGE_TRANSACTION_NAME),
     mergeMap((action: ChangeTransactionName) => API.getFilteredUsersList(action.name).pipe(
         map(res => updateSuggestedUsersList(res.data)),
-        // TODO - change error func
         catchError(error => of(createTransactionFailure(error.message)))
     )),
 );
@@ -49,7 +47,6 @@ export const createTransactionEpic = (
     ofType(CREATE_TRANSACTION),
     mergeMap((action: CreateTransaction) => API.createTransaction(action.name, action.amount).pipe(
         mergeMap(() => of(fetchProfileData(), closeTransactionModal())),
-        // TODO - change error func
         catchError(error => of(createTransactionFailure(error.message)))
     )),
 );

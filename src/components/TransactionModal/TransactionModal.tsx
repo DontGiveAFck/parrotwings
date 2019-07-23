@@ -42,7 +42,7 @@ class TransactionModal extends Component<TransactionModalProps> {
             <div
                 className={BLOCK()}
             >
-                <Modal open={transactionModalOpened} closeIcon closeOnDocumentClick>
+                <Modal open={transactionModalOpened} closeOnDocumentClick>
                     <Header icon="money" content="Create new transaction" />
                     <Modal.Content>
                         <Form error={Boolean(errorText)}>
