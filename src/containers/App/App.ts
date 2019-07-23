@@ -1,30 +1,16 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { createSelector } from 'reselect';
-import { State } from '../../typings/common';
 import App from '../../components/App/App';
-
-// const variableSelector = createSelector(
-//     (state: State): boolean => state,
-//     variable => ({
-//         variable
-//     })
-// );
-
-const mapStateToProps = (
-    state: State
-) => ({
-    // ...variableSelector(state)
-});
+import { userAuthSuccess } from '../../actions/auth';
 
 const mapDispatchToProps = (
     dispatch: Dispatch
 ) => ({
-    // handleClick: (value: boolean) => dispatch(changeVariable(value))
+    goToProfilePage: (idToken: string) => dispatch(userAuthSuccess(idToken))
 });
 
 export default connect(
     // @ts-ignore
-    mapStateToProps,
+    null,
     mapDispatchToProps
 )(App);
