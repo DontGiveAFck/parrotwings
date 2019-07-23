@@ -19,7 +19,7 @@ import {
 } from '../../typings/common';
 import TransactionsInfo from '../TransactionsInfo/TransactionsInfo';
 import TransactionModal from '../TransactionModal/TransactionModal';
-import background from "../../assets/images/bg-pr.jpg";
+import background from '../../assets/images/bg-pr.jpg';
 
 const BLOCK = cn('ProfilePage');
 
@@ -105,7 +105,9 @@ class ProfilePage extends Component<ProfilePageProps> {
     }
 
     private getUserInfo = () => {
-        const { userInfo, openTransactionModal, logout } = this.props;
+        const {
+            userInfo, openTransactionModal, logout, fetchProfileData
+        } = this.props;
         const {
             name,
             balance
@@ -121,7 +123,7 @@ class ProfilePage extends Component<ProfilePageProps> {
                     </a>
                 </div>
                 <div className={BLOCK('SendButton')}>
-                    <a onClick={() => openTransactionModal()}>
+                    <a onClick={() => fetchProfileData()}>
                         <Icon name="sync" />
                         <span>Update info</span>
                     </a>

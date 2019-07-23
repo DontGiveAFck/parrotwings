@@ -10,7 +10,7 @@ import {
     ChangeTransactionName, CREATE_TRANSACTION, CreateTransaction,
     FETCH_PROFILE_DATA, fetchProfileData, FetchProfileData,
     fetchProfileDataSuccess, updateSuggestedUsersList, createTransactionFailure,
-    closeTransactionModal, LOGOUT, Logout
+    closeTransactionModal, LOGOUT, Logout, logout
 } from '../actions/profile';
 import { mapUserInfo } from '../services/mappers';
 
@@ -28,7 +28,7 @@ export const fetchProfileDataEpic = (
             return fetchProfileDataSuccess(userInfo, transactionsInfo);
         }),
         // TODO - change error func
-        catchError(error => of(userAuthFailure(error.message)))
+        catchError(error => of(logout(), push('/'), userAuthFailure(error.message)))
     )),
 );
 

@@ -32,7 +32,8 @@ module.exports = {
         "@typescript-eslint/no-unused-vars": "off",
         "import/no-cycle": "off",
         "react/jsx-no-bind": "off",
-        "react/jsx-one-expression-per-line": "off"
+        "react/jsx-one-expression-per-line": "off",
+        "react/prefer-stateless-function": "off"
     },
     "settings": {
         "react": {

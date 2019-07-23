@@ -61,7 +61,9 @@ class RegistrationPage extends Component<RegistrationPageProps> {
             onChangeAuthField,
             errorText,
             password,
-            rPassword
+            rPassword,
+            username,
+            email,
         } = this.props;
 
         const isPasswordsEqual = rPassword === password;
@@ -82,6 +84,7 @@ class RegistrationPage extends Component<RegistrationPageProps> {
                                 }
                                 onBlur={() => this.emailValidate()}
                                 error={!registrationButtonActive}
+                                value={email}
                             />
                         </Form.Field>
                         <Form.Field>
@@ -95,6 +98,7 @@ class RegistrationPage extends Component<RegistrationPageProps> {
                                     AuthField.USERNAME,
                                     e.target.value
                                 )}
+                                value={username}
                             />
                         </Form.Field>
                         <Form.Field>
@@ -109,6 +113,7 @@ class RegistrationPage extends Component<RegistrationPageProps> {
                                     e.target.value
                                 )}
                                 error={!isPasswordsEqual}
+                                value={password}
                             />
                         </Form.Field>
                         <Form.Field>
@@ -123,6 +128,7 @@ class RegistrationPage extends Component<RegistrationPageProps> {
                                     e.target.value
                                 )}
                                 error={!isPasswordsEqual}
+                                value={rPassword}
                             />
                         </Form.Field>
                         <Form.Field>

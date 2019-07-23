@@ -1,1 +1,2 @@
 export const ANIMATION_DURATION_AUTH_PAGE = 1000;
+export const MAX_USERNAME_LENGTH = 20;

@@ -68,7 +68,7 @@ class TransactionsInfo extends Component<TransactionsInfoProps> {
         const sortDirectionCell = sortDirection === SortDirection.ASC ? 'ascending' : 'descending';
         return (
             <div className={BLOCK('Table')}>
-                <Table selectable sortable textAlign="center">
+                <Table selectable sortable celled>
                     <Table.Header>
                         <Table.Row>
                             <Table.HeaderCell

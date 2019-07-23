@@ -12,6 +12,7 @@ import {
     USER_AUTH_FAILURE,
     UserAuthFailure
 } from '../actions/auth';
+import {MAX_USERNAME_LENGTH} from "../constants/numberConstants";
 
 function goToRegistrationPage(
     state: AuthPageState,
@@ -57,6 +58,12 @@ function changeAuthField(
     };
 
     if (field === AuthField.USERNAME) {
+        if (
+            newCredentials.username
+            && newCredentials.username.length > MAX_USERNAME_LENGTH
+        ) {
+            return state;
+        }
         newCredentials.username = action.value;
     } else if (field === AuthField.EMAIL) {
         newCredentials.email = action.value;
@@ -68,7 +75,6 @@ function changeAuthField(
 
     return {
         ...state,
-        page: AuthPage.LOGIN,
         credentials: {
             ...newCredentials
         }

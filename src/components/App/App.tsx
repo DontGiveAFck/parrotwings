@@ -13,11 +13,6 @@ import ProfilePage from '../../containers/ProfilePage/ProfilePage';
 const BLOCK = cn('App');
 
 class App extends Component {
-
-    componentDidMount(): void {
-
-    }
-
     render() {
         return (
             <div className={BLOCK()}>
@@ -32,6 +27,7 @@ class App extends Component {
                         <Switch>
                             <Route exact path="/profile" render={() => <ProfilePage />} />
                         </Switch>
+
                     </>
                 </ConnectedRouter>
             </div>
