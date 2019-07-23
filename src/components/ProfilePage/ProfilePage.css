@@ -51,3 +51,7 @@
 .ProfilePage-BalanceValue {
     color: green;
 }
+
+.ProfilePage-LogoutElement {
+    color: red;
+}

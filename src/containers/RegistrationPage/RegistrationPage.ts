@@ -10,12 +10,14 @@ const variableSelector = createSelector(
     (state: State): string => state.auth.credentials.username,
     (state: State): string => state.auth.credentials.email,
     (state: State): string => state.auth.credentials.password,
+    (state: State): string | undefined => state.auth.credentials.rPassword,
     (state: State): string | undefined => state.auth.errorText,
-    (username, email, password, errorText) => {
+    (username, email, password, rPassword, errorText) => {
         return ({
             username,
             email,
             password,
+            rPassword,
             errorText
         });
     }
@@ -23,15 +25,9 @@ const variableSelector = createSelector(
 
 const mapStateToProps = (
     state: State
-) => {
-    const creds = variableSelector(state);
-    return ({
-        username: creds.username,
-        password: creds.password,
-        email: creds.email,
-        errorText: creds.errorText
-    });
-};
+) => ({
+    ...variableSelector(state)
+});
 
 const mapDispatchToProps = (
     dispatch: Dispatch

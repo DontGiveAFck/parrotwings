@@ -10,7 +10,8 @@ export const authPageState: AuthPageState = {
     credentials: {
         username: '',
         email: '',
-        password: ''
+        password: '',
+        rPassword: ''
     }
 };
 

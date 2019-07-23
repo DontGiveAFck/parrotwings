@@ -1,6 +1,6 @@
 import * as _ from 'lodash';
 
-import {Reducer} from 'redux';
+import { Reducer } from 'redux';
 import {
     CHANGE_SORT_OPTIONS,
     CHANGE_TRANSACTION_AMOUNT,
@@ -21,9 +21,11 @@ import {
     UPDATE_SUGGESTED_USERS_LIST,
     UpdateSuggestedUsersList
 } from '../actions/profile';
-import {Profile, SortDirection, State, TransactionInfo} from '../typings/common';
-import {Action} from '../actions/action';
-import {profileState} from './rootReducer';
+import {
+    Profile, SortDirection, State, TransactionInfo
+} from '../typings/common';
+import { Action } from '../actions/action';
+import { profileState } from './rootReducer';
 
 function fetchProfileDataSuccess(
     state: Profile,

@@ -19,6 +19,7 @@ import {
 } from '../../typings/common';
 import TransactionsInfo from '../TransactionsInfo/TransactionsInfo';
 import TransactionModal from '../TransactionModal/TransactionModal';
+import background from "../../assets/images/bg-pr.jpg";
 
 const BLOCK = cn('ProfilePage');
 
@@ -70,7 +71,14 @@ class ProfilePage extends Component<ProfilePageProps> {
                     <Loader size="massive">Loading</Loader>
                 </Dimmer>
                 {!isLoading && (
-                    <div className={BLOCK('Container')}>
+                    <div
+                        className={BLOCK('Container')}
+                        style={{
+                            backgroundImage: `url(${background})`,
+                            backgroundSize: 'cover',
+                            backgroundRepeat: 'no-repeat'
+                        }}
+                    >
                         <Container>
                             {this.getUserInfo()}
                             <TransactionsInfo
@@ -119,7 +127,7 @@ class ProfilePage extends Component<ProfilePageProps> {
                     </a>
                 </div>
                 <div className={BLOCK('Logout')}>
-                    <a onClick={logout}>
+                    <a onClick={logout} className={BLOCK('LogoutElement')}>
                         <Icon name="power off" />
                         <span>Logout</span>
                     </a>

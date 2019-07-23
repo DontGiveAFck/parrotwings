@@ -18,6 +18,7 @@ export interface RegistrationPageProps {
     onChangeAuthField: (field: AuthField, value: string) => void;
     username: string;
     password: string;
+    rPassword?: string;
     email: string;
     errorText?: string;
 }
@@ -58,8 +59,12 @@ class RegistrationPage extends Component<RegistrationPageProps> {
             openLoginPageClick,
             registrationButtonClick,
             onChangeAuthField,
-            errorText
+            errorText,
+            password,
+            rPassword
         } = this.props;
+
+        const isPasswordsEqual = rPassword === password;
         return (
             <Transition visible={registrationFormVisible} animation="fade" duration={ANIMATION_DURATION_AUTH_PAGE}>
                 <div className={BLOCK('Form')}>
@@ -103,6 +108,7 @@ class RegistrationPage extends Component<RegistrationPageProps> {
                                     AuthField.PASSWORD,
                                     e.target.value
                                 )}
+                                error={!isPasswordsEqual}
                             />
                         </Form.Field>
                         <Form.Field>
@@ -116,6 +122,7 @@ class RegistrationPage extends Component<RegistrationPageProps> {
                                     AuthField.PASSWORD_REPEAT,
                                     e.target.value
                                 )}
+                                error={!isPasswordsEqual}
                             />
                         </Form.Field>
                         <Form.Field>
@@ -124,7 +131,7 @@ class RegistrationPage extends Component<RegistrationPageProps> {
                                     type="submit"
                                     color="instagram"
                                     onClick={this.onRegistrationButtonClick}
-                                    disabled={!registrationButtonActive}
+                                    disabled={!registrationButtonActive || !isPasswordsEqual}
                                 >
                                     Sign up and login
                                 </Button>

@@ -23,7 +23,8 @@ function goToRegistrationPage(
         credentials: {
             username: '',
             email: '',
-            password: ''
+            password: '',
+            rPassword: ''
         },
         errorText: ''
     };
