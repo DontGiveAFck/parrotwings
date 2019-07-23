@@ -12,7 +12,7 @@ import {
     CloseTransactionModal, CreateTransactionFailure,
     FetchProfileData,
     FetchProfileDataFailure,
-    FetchProfileDataSuccess,
+    FetchProfileDataSuccess, Logout,
     OpenTransactionModal,
     UpdateSuggestedUsersList
 } from './profile';
@@ -24,6 +24,7 @@ export type Action =
     | UserAuthSuccess
     | UserAuthFailure
     | Login
+    | Logout
     | FetchProfileData
     | FetchProfileDataSuccess
     | FetchProfileDataFailure

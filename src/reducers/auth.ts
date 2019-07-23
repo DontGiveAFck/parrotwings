@@ -13,6 +13,7 @@ import {
     UserAuthFailure
 } from '../actions/auth';
 import {MAX_USERNAME_LENGTH} from "../constants/numberConstants";
+import {LOGOUT, Logout} from "../actions/profile";
 
 function goToRegistrationPage(
     state: AuthPageState,
@@ -44,6 +45,16 @@ function goToLoginPage(
             password: '',
             rPassword: ''
         },
+        errorText: ''
+    };
+}
+
+function logout(
+    state: AuthPageState,
+    action: Logout
+): AuthPageState {
+    return {
+        ...state,
         errorText: ''
     };
 }
@@ -107,6 +118,8 @@ export const authReducer: Reducer<AuthPageState, Action> = (
             return changeAuthField(state, action);
         case USER_AUTH_FAILURE:
             return setAuthErrorText(state, action);
+        case LOGOUT:
+            return logout(state, action);
         default:
             return state;
     }
