@@ -106,6 +106,19 @@ class RegistrationPage extends Component<RegistrationPageProps> {
                             />
                         </Form.Field>
                         <Form.Field>
+                            <label>Repeat password</label>
+                            <Form.Input
+                                icon="lock"
+                                iconPosition="left"
+                                type="password"
+                                placeholder="Enter password"
+                                onChange={e => onChangeAuthField(
+                                    AuthField.PASSWORD_REPEAT,
+                                    e.target.value
+                                )}
+                            />
+                        </Form.Field>
+                        <Form.Field>
                             <div className={BLOCK('SignUpButton')}>
                                 <Button
                                     type="submit"

@@ -18,12 +18,14 @@ export enum AuthPage {
 export interface UserRegistration {
     email: string,
     password: string,
+    rPassword?: string,
     username?: string
 }
 
 export enum AuthField {
     EMAIL = 'EMAIL',
     PASSWORD = 'PASSWORD',
+    PASSWORD_REPEAT = 'PASSWORD_REPEAT',
     USERNAME = 'USERNAME'
 }
 

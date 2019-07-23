@@ -39,7 +39,8 @@ function goToLoginPage(
         credentials: {
             username: '',
             email: '',
-            password: ''
+            password: '',
+            rPassword: ''
         },
         errorText: ''
     };
@@ -60,6 +61,8 @@ function changeAuthField(
         newCredentials.email = action.value;
     } else if (field === AuthField.PASSWORD) {
         newCredentials.password = action.value;
+    } else if (field === AuthField.PASSWORD_REPEAT) {
+        newCredentials.rPassword = action.value;
     }
 
     return {
