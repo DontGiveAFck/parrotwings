@@ -4,7 +4,7 @@ import { cn } from '@bem-react/classname';
 import {
     Modal, Button, Header, Icon, Input, Form, Dropdown, DropdownProps, Message
 } from 'semantic-ui-react';
-import { AuthField, TransactionModalData } from '../../typings/common';
+import { TransactionModalData } from '../../typings/common';
 
 const BLOCK = cn('TransactionModal');
 

@@ -3,12 +3,9 @@ import './ProfilePage.css';
 import { cn } from '@bem-react/classname';
 import {
     Container,
-    Card,
     Icon,
-    Button, Transition,
     Dimmer,
-    Loader,
-    Dropdown
+    Loader
 } from 'semantic-ui-react';
 import {
     TransactionInfo,

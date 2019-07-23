@@ -9,7 +9,6 @@ import * as EmailValidator from 'email-validator';
 import background from '../../assets/images/bg-start-o.jpg';
 import { ANIMATION_DURATION_AUTH_PAGE } from '../../constants/numberConstants';
 import { AuthField, UserRegistration } from '../../typings/common';
-import { changeAuthField } from '../../actions/auth';
 
 const BLOCK = cn('LoginPage');
 

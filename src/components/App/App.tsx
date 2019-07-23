@@ -4,7 +4,6 @@ import { cn } from '@bem-react/classname';
 import { Header } from 'semantic-ui-react';
 import { ConnectedRouter } from 'connected-react-router';
 import { Route, Switch } from 'react-router';
-import { Provider } from 'react-redux';
 import { history } from '../../store/configureStore';
 import LoginPage from '../../containers/LoginPage/LoginPage';
 import RegistrationPage from '../../containers/RegistrationPage/RegistrationPage';

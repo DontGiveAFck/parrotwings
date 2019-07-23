@@ -1,4 +1,3 @@
-import { Observable, of } from 'rxjs';
 import { fromPromise } from 'rxjs/internal-compatibility';
 import { UserRegistration } from '../typings/common';
 import LocalStorage from '../services/LocalStorage';
