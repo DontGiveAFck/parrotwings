@@ -112,6 +112,12 @@ class ProfilePage extends Component<ProfilePageProps> {
                         <span>Create transaction</span>
                     </a>
                 </div>
+                <div className={BLOCK('SendButton')}>
+                    <a onClick={() => openTransactionModal()}>
+                        <Icon name="sync" />
+                        <span>Update info</span>
+                    </a>
+                </div>
                 <div className={BLOCK('Logout')}>
                     <a onClick={logout}>
                         <Icon name="power off" />

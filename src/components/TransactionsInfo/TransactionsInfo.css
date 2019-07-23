@@ -1,4 +1,15 @@
-.TransactionsInfo {
+.TransactionInfo {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    overflow-y: auto;
+}
+
+.TransactionsInfo-Table {
     overflow-y: scroll;
     height: 500px;
+}
+
+.TransactionsInfo-Title {
+    text-align: center;
 }
