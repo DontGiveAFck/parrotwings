@@ -49,7 +49,8 @@ export interface Profile {
     isLoading: boolean;
     transactionModalOpened: boolean;
     transactionModalData: TransactionModalData;
-    transactionsSortType: TransactionsSortColumn;
+    sortColumn: TransactionsSortColumn;
+    sortDirection: SortDirection;
 }
 
 export interface TransactionInfo {
@@ -61,14 +62,14 @@ export interface TransactionInfo {
 }
 
 export enum TransactionsSortColumn {
-    Date = 'Date',
-    Name = 'Name',
-    Amount = 'Amount',
+    Date = 'date',
+    Username = 'username',
+    Amount = 'amount',
 }
 
-export enum TransactionsSortType {
-    INC = 'INC',
-    DEC = 'DEC'
+export enum SortDirection {
+    ASC = 'ASC',
+    DESC = 'DESC'
 }
 
 export enum TransactionsFilterType {

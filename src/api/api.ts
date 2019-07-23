@@ -1,7 +1,7 @@
 import { Observable, of } from 'rxjs';
 import { fromPromise } from 'rxjs/internal-compatibility';
 import { UserRegistration } from '../typings/common';
-import LocalStorage from "../services/LocalStorage";
+import LocalStorage from '../services/LocalStorage';
 
 const URL = 'http://193.124.114.46:3001';
 
@@ -16,11 +16,10 @@ export default class {
         }).then(res => {
             if (res.ok) {
                 return res.json()
-                    .then(json => ({status: 'ok', data: json}));
-            } else {
-                return res.text().then(text => {throw Error(text)});
+                    .then(json => ({ status: 'ok', data: json }));
             }
-        })
+            return res.text().then(text => { throw Error(text); });
+        });
 
         return fromPromise(request);
     }
@@ -35,10 +34,9 @@ export default class {
         }).then(res => {
             if (res.ok) {
                 return res.json()
-                    .then(json => ({status: 'ok', data: json}));
-            } else {
-                return res.text().then(text => {throw Error(text)});
+                    .then(json => ({ status: 'ok', data: json }));
             }
+            return res.text().then(text => { throw Error(text); });
         });
 
         return fromPromise(request);
@@ -56,11 +54,10 @@ export default class {
         }).then(res => {
             if (res.ok) {
                 return res.json()
-                    .then(json => ({status: 'ok', data: json}));
-            } else {
-                return res.text().then(text => {throw Error(text)});
+                    .then(json => ({ status: 'ok', data: json }));
             }
-        })
+            return res.text().then(text => { throw Error(text); });
+        });
 
         return fromPromise(request);
     }
@@ -76,11 +73,10 @@ export default class {
         }).then(res => {
             if (res.ok) {
                 return res.json()
-                    .then(json => ({status: 'ok', data: json}));
-            } else {
-                return res.text().then(text => {throw Error(text)});
+                    .then(json => ({ status: 'ok', data: json }));
             }
-        })
+            return res.text().then(text => { throw Error(text); });
+        });
 
         return fromPromise(request);
     }
@@ -99,11 +95,11 @@ export default class {
         }).then(res => {
             if (res.ok) {
                 return res.json()
-                    .then(json => ({status: 'ok', data: json}));
-            } else {
-                return res.text().then(text => {throw Error(text)});
+                    .then(json => ({ status: 'ok', data: json }));
             }
-        })
+            return res.text()
+                .then(text => { throw Error(text); });
+        });
 
         return fromPromise(request);
     }
@@ -123,11 +119,13 @@ export default class {
         }).then(res => {
             if (res.ok) {
                 return res.json()
-                    .then(json => ({status: 'ok', data: json}));
-            } else {
-                return res.text().then(text => {throw Error(text)});
+                    .then(json => ({ status: 'ok', data: json }));
             }
-        })
+            return res.text()
+                .then(text => {
+                    throw Error(text);
+                });
+        });
 
         return fromPromise(request);
     }

@@ -1,4 +1,4 @@
-import {TransactionInfo, UserInfo} from '../typings/common';
+import {SortDirection, TransactionInfo, TransactionsSortColumn, UserInfo} from '../typings/common';
 
 export const FETCH_PROFILE_DATA = 'FETCH_PROFILE_DATA';
 type FETCH_PROFILE_DATA = typeof FETCH_PROFILE_DATA;
@@ -187,5 +187,22 @@ export function createTransactionFailure(
     return {
         type: CREATE_TRANSACTION_FAILURE,
         errorText
+    };
+}
+
+export const CHANGE_SORT_OPTIONS = 'CHANGE_SORT_OPTIONS';
+type CHANGE_SORT_OPTIONS = typeof CHANGE_SORT_OPTIONS;
+
+export interface ChangeSortOptions {
+    type: CHANGE_SORT_OPTIONS;
+    column: TransactionsSortColumn;
+}
+
+export function changeSortOptions(
+    column: TransactionsSortColumn,
+): ChangeSortOptions {
+    return {
+        type: CHANGE_SORT_OPTIONS,
+        column,
     };
 }

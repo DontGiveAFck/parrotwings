@@ -14,12 +14,11 @@ import {
     TransactionInfo,
     TransactionModalData,
     TransactionsSortColumn,
-    TransactionsSortType,
+    SortDirection,
     UserInfo
 } from '../../typings/common';
 import TransactionsInfo from '../TransactionsInfo/TransactionsInfo';
 import TransactionModal from '../TransactionModal/TransactionModal';
-import { sortColumnsOptions, sortTypesOptions } from '../../constants/declarations';
 
 const BLOCK = cn('ProfilePage');
 
@@ -36,6 +35,9 @@ interface ProfilePageProps {
     changeTransactionAmount: (amount: number) => void;
     createTransaction: (name: string, amount: number) => void;
     logout: () => void;
+    changeSortType: (column : TransactionsSortColumn) => void;
+    sortDirection: SortDirection;
+    sortColumn: TransactionsSortColumn;
 }
 
 class ProfilePage extends Component<ProfilePageProps> {
@@ -54,7 +56,10 @@ class ProfilePage extends Component<ProfilePageProps> {
             createTransaction,
             transactionsInfo,
             openTransactionModal,
-            isLoading
+            isLoading,
+            changeSortType,
+            sortDirection,
+            sortColumn
         } = this.props;
 
         return (
@@ -68,10 +73,13 @@ class ProfilePage extends Component<ProfilePageProps> {
                     <div className={BLOCK('Container')}>
                         <Container>
                             {this.getUserInfo()}
-                            {this.getSortOptions()}
                             <TransactionsInfo
                                 transactionsInfo={transactionsInfo}
                                 openTransactionModal={openTransactionModal}
+                                changeSortType={changeSortType}
+                                sortDirection={sortDirection}
+                                sortColumn={sortColumn}
+
                             />
                             <TransactionModal
                                 transactionModalOpened={transactionModalOpened}
@@ -87,24 +95,6 @@ class ProfilePage extends Component<ProfilePageProps> {
             </div>
         );
     }
-
-    private getSortOptions = () => (
-        <div className={BLOCK('Sort')}>
-            <div>Sort</div>
-            <Dropdown
-                fluid
-                selection
-                options={sortColumnsOptions}
-                defaultValue={TransactionsSortColumn.Date}
-            />
-            <Dropdown
-                fluid
-                selection
-                options={sortTypesOptions}
-                defaultValue={TransactionsSortType.DEC}
-            />
-        </div>
-    );
 
     private getUserInfo = () => {
         const { userInfo, openTransactionModal, logout } = this.props;

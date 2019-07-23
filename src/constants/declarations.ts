@@ -1,32 +1,32 @@
-import {TransactionsSortColumn, TransactionsSortType} from "../typings/common";
+import {TransactionsSortColumn, SortDirection} from "../typings/common";
 
-export const sortColumnsOptions = [
-    {
-        key: TransactionsSortColumn.Date,
-        value: TransactionsSortColumn.Date,
-        text: TransactionsSortColumn.Date
-    },
-    {
-        key: TransactionsSortColumn.Name,
-        value: TransactionsSortColumn.Name,
-        text: TransactionsSortColumn.Name
-    },
-    {
-        key: TransactionsSortColumn.Amount,
-        value: TransactionsSortColumn.Amount,
-        text: TransactionsSortColumn.Amount
-    }
-];
-
-export const sortTypesOptions = [
-    {
-        key: TransactionsSortType.INC,
-        value: TransactionsSortType.INC,
-        text: TransactionsSortType.INC
-    },
-    {
-        key: TransactionsSortType.DEC,
-        value: TransactionsSortType.DEC,
-        text: TransactionsSortType.DEC
-    }
-];
+// export const sortColumnsOptions = [
+//     {
+//         key: TransactionsSortColumn.Date,
+//         value: TransactionsSortColumn.Date,
+//         text: TransactionsSortColumn.Date
+//     },
+//     {
+//         key: TransactionsSortColumn.Username,
+//         value: TransactionsSortColumn.Username,
+//         text: TransactionsSortColumn.Username
+//     },
+//     {
+//         key: TransactionsSortColumn.Amount,
+//         value: TransactionsSortColumn.Amount,
+//         text: TransactionsSortColumn.Amount
+//     }
+// ];
+//
+// export const sortTypesOptions = [
+//     {
+//         key: SortDirection.INC,
+//         value: SortDirection.INC,
+//         text: SortDirection.INC
+//     },
+//     {
+//         key: SortDirection.DEC,
+//         value: SortDirection.DEC,
+//         text: SortDirection.DEC
+//     }
+// ];

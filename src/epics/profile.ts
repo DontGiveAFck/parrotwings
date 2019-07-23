@@ -1,7 +1,7 @@
 import { ActionsObservable, ofType } from 'redux-observable';
 import { catchError, map, mergeMap } from 'rxjs/operators';
-import { of, forkJoin, concat } from 'rxjs';
-import { Action } from '../actions/action';
+import { of, forkJoin } from 'rxjs';
+import { push } from 'connected-react-router';
 import { REGISTRATION, userAuthFailure, userAuthSuccess } from '../actions/auth';
 import API from '../api/api';
 import LocalStorage from '../services/LocalStorage';
@@ -13,7 +13,6 @@ import {
     closeTransactionModal, LOGOUT, Logout
 } from '../actions/profile';
 import { mapUserInfo } from '../services/mappers';
-import {push} from "connected-react-router";
 
 export const fetchProfileDataEpic = (
     action$: ActionsObservable<FetchProfileData>
@@ -40,7 +39,7 @@ export const fetchFilteredUsersListEpic = (
     mergeMap((action: ChangeTransactionName) => API.getFilteredUsersList(action.name).pipe(
         map(res => updateSuggestedUsersList(res.data)),
         // TODO - change error func
-        catchError(error => of(userAuthFailure(error.message)))
+        catchError(error => of(createTransactionFailure(error.message)))
     )),
 );
 

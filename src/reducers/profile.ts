@@ -1,24 +1,29 @@
-import { Reducer } from 'redux';
+import * as _ from 'lodash';
+
+import {Reducer} from 'redux';
 import {
+    CHANGE_SORT_OPTIONS,
+    CHANGE_TRANSACTION_AMOUNT,
     CHANGE_TRANSACTION_NAME,
+    ChangeSortOptions,
     ChangeTransactionAmount,
     ChangeTransactionName,
     CLOSE_TRANSACTION_MODAL,
     CloseTransactionModal,
-    FETCH_PROFILE_DATA_SUCCESS,
-    FetchProfileDataSuccess,
-    CHANGE_TRANSACTION_AMOUNT,
     CREATE_TRANSACTION_FAILURE,
+    CreateTransactionFailure,
+    FETCH_PROFILE_DATA,
+    FETCH_PROFILE_DATA_SUCCESS,
+    FetchProfileData,
+    FetchProfileDataSuccess,
     OPEN_TRANSACTION_MODAL,
     OpenTransactionModal,
     UPDATE_SUGGESTED_USERS_LIST,
-    UpdateSuggestedUsersList,
-    CreateTransactionFailure,
-    FetchProfileData, FETCH_PROFILE_DATA
+    UpdateSuggestedUsersList
 } from '../actions/profile';
-import {AuthPageState, Profile, State, TransactionInfo} from '../typings/common';
-import { Action } from '../actions/action';
-import { profileState } from './rootReducer';
+import {Profile, SortDirection, State, TransactionInfo} from '../typings/common';
+import {Action} from '../actions/action';
+import {profileState} from './rootReducer';
 
 function fetchProfileDataSuccess(
     state: Profile,
@@ -26,8 +31,7 @@ function fetchProfileDataSuccess(
 ): Profile {
     const { userInfo, transactionsInfo } = action;
     transactionsInfo.sort(
-        (a: TransactionInfo, b: TransactionInfo) =>
-            new Date(b.date).getTime() - new Date(a.date).getTime()
+        (a: TransactionInfo, b: TransactionInfo) => new Date(b.date).getTime() - new Date(a.date).getTime()
     );
     return {
         ...state,
@@ -124,6 +128,29 @@ function fetchProfileData(
     };
 }
 
+function changeSortOptions(
+    state: Profile,
+    action: ChangeSortOptions
+): Profile {
+    const { column: clickedColumn } = action;
+    const { transactionsInfo, sortColumn, sortDirection } = state;
+
+    if (sortColumn !== clickedColumn) {
+        return {
+            ...state,
+            sortColumn: clickedColumn,
+            transactionsInfo: _.sortBy(transactionsInfo, [clickedColumn]),
+            sortDirection: SortDirection.ASC
+        };
+    }
+
+    const newTransactionsInfo = [...transactionsInfo].reverse();
+    return {
+        ...state,
+        transactionsInfo: newTransactionsInfo,
+        sortDirection: sortDirection === SortDirection.ASC ? SortDirection.DESC : SortDirection.ASC
+    };
+}
 
 // TODO - избавиться от tsignore
 // @ts-ignore
@@ -149,6 +176,8 @@ export const profileReducer: Reducer<Profile, Action> = (
             return createTransactionFailure(state, action);
         case FETCH_PROFILE_DATA:
             return fetchProfileData(state, action);
+        case CHANGE_SORT_OPTIONS:
+            return changeSortOptions(state, action);
         default:
             return state;
     }

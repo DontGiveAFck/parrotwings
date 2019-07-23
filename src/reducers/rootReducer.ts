@@ -1,7 +1,7 @@
 import {combineReducers, ReducersMapObject} from 'redux';
 import {History} from 'history';
 import {connectRouter} from 'connected-react-router';
-import {AuthPage, AuthPageState, Profile, State, TransactionsSortColumn} from '../typings/common';
+import {AuthPage, AuthPageState, Profile, SortDirection, State, TransactionsSortColumn} from '../typings/common';
 import {authReducer} from './auth';
 import {profileReducer} from './profile';
 
@@ -27,7 +27,8 @@ export const profileState: Profile = {
         amount: 0,
         suggestedUsersList: []
     },
-    transactionsSortType: TransactionsSortColumn.Date
+    sortColumn: TransactionsSortColumn.Date,
+    sortDirection: SortDirection.DESC
 };
 
 export const initialState: State = {

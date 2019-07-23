@@ -1,22 +1,17 @@
 import React, { Component } from 'react';
 import './TransactionsInfo.css';
 import { cn } from '@bem-react/classname';
-import {
-    Container,
-    Transition,
-    Card,
-    Icon,
-    Table,
-    Button
-} from 'semantic-ui-react';
-import background from '../../assets/images/profile-bg.jpg';
-import { TransactionInfo, UserInfo } from '../../typings/common';
+import { Button, Table } from 'semantic-ui-react';
+import { SortDirection, TransactionInfo, TransactionsSortColumn } from '../../typings/common';
 
 const BLOCK = cn('TransactionsInfo');
 
 interface TransactionsInfoProps {
     transactionsInfo: TransactionInfo[];
     openTransactionModal: (name: string, amount: number) => void;
+    changeSortType: (column : TransactionsSortColumn) => void;
+    sortDirection: SortDirection;
+    sortColumn: TransactionsSortColumn;
 }
 
 class TransactionsInfo extends Component<TransactionsInfoProps> {
@@ -66,14 +61,36 @@ class TransactionsInfo extends Component<TransactionsInfoProps> {
     );
 
     private getTable = () => {
-        const { transactionsInfo } = this.props;
+        const { transactionsInfo, sortDirection, sortColumn } = this.props;
+        const sortDirectionCell = sortDirection === SortDirection.ASC ? 'ascending' : 'descending';
         return (
-            <Table selectable textAlign="center">
+            <Table selectable sortable textAlign="center">
                 <Table.Header>
                     <Table.Row>
-                        <Table.HeaderCell>Date/Time of the transaction</Table.HeaderCell>
-                        <Table.HeaderCell>Correspondent name</Table.HeaderCell>
-                        <Table.HeaderCell>Transaction amount</Table.HeaderCell>
+                        <Table.HeaderCell
+                            sorted={sortColumn === TransactionsSortColumn.Date
+                                ? sortDirectionCell
+                                : undefined}
+                            onClick={() => this.handleSort(TransactionsSortColumn.Date)}
+                        >
+                            Date/Time of the transaction
+                        </Table.HeaderCell>
+                        <Table.HeaderCell
+                            sorted={sortColumn === TransactionsSortColumn.Username
+                                ? sortDirectionCell
+                                : undefined}
+                            onClick={() => this.handleSort(TransactionsSortColumn.Username)}
+                        >
+                            Correspondent name
+                        </Table.HeaderCell>
+                        <Table.HeaderCell
+                            sorted={sortColumn === TransactionsSortColumn.Amount
+                                ? sortDirectionCell
+                                : undefined}
+                            onClick={() => this.handleSort(TransactionsSortColumn.Amount)}
+                        >
+                            Transaction amount
+                        </Table.HeaderCell>
                         <Table.HeaderCell>Resulting balance</Table.HeaderCell>
                         <Table.HeaderCell>Actions</Table.HeaderCell>
                     </Table.Row>
@@ -86,6 +103,11 @@ class TransactionsInfo extends Component<TransactionsInfoProps> {
                 </Table.Body>
             </Table>
         );
+    };
+
+    private handleSort = (clickedColumn: TransactionsSortColumn) => {
+        const { changeSortType } = this.props;
+        changeSortType(clickedColumn);
     };
 }
 
