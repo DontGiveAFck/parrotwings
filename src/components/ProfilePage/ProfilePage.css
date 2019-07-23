@@ -13,25 +13,41 @@
 
 .ProfilePage-UserInfo {
     display: flex;
-    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.ProfilePage-Name {
+    font-weight: bold;
+    font-size: 20px;
 }
 
 .ProfilePage-Logout {
-    color: red;
-    font-size: 16px;
+    font-size: 20px;
+    margin-left: auto;
+    cursor: pointer;
 }
 
 .ProfilePage-Balance {
     font-weight: bold;
-    font-size: 16px;
+    font-size: 20px;
+    margin-left: 20px;
 }
 
 .ProfilePage-SendButton {
-    width: 100%;
+    margin-left: 20px;
+    cursor: pointer;
+    font-size: 20px;
+
 }
 
 .ProfilePage-Sort {
     width: 200px;
     display: flex;
     align-items: center;
+}
+
+.ProfilePage-NameValue,
+.ProfilePage-BalanceValue {
+    color: green;
 }

@@ -104,37 +104,20 @@ class ProfilePage extends Component<ProfilePageProps> {
         } = userInfo;
         return (
             <div className={BLOCK('UserInfo')}>
-                <Card>
-                    <Card.Content>
-                        <Card.Header>{name}</Card.Header>
-                        <Card.Meta>
-                            <span className="date">Parrot</span>
-                        </Card.Meta>
-                        <Card.Description>
-                            <span className={BLOCK('Balance')}>
-                                Balance:&nbsp;
-                                { balance } PW
-                            </span>
-                        </Card.Description>
-                    </Card.Content>
-                    <Card.Content>
-                        <div>
-                            <Button
-                                color="instagram"
-                                className="SendButton"
-                                onClick={() => openTransactionModal()}
-                            >
-                                Send PW
-                            </Button>
-                        </div>
-                    </Card.Content>
-                    <Card.Content extra>
-                        <a onClick={logout}>
-                            <Icon name="power off" />
-                            <span className={BLOCK('Logout')}>Logout</span>
-                        </a>
-                    </Card.Content>
-                </Card>
+                <div className={BLOCK('Name')}>Name: <span className={BLOCK('NameValue')}>{name}</span></div>
+                <div className={BLOCK('Balance')}>Balance: <span className={BLOCK('BalanceValue')}>{balance}</span> PW</div>
+                <div className={BLOCK('SendButton')}>
+                    <a onClick={() => openTransactionModal()}>
+                        <Icon name="btc" />
+                        <span>Create transaction</span>
+                    </a>
+                </div>
+                <div className={BLOCK('Logout')}>
+                    <a onClick={logout}>
+                        <Icon name="power off" />
+                        <span>Logout</span>
+                    </a>
+                </div>
             </div>
         );
     };
