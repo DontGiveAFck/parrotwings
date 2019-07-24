@@ -77,7 +77,7 @@ class TransactionsInfo extends Component<TransactionsInfoProps> {
                                     : undefined}
                                 onClick={() => this.handleSort(TransactionsSortColumn.Date)}
                             >
-                                Date/Time of the transaction
+                                Date/Time
                             </Table.HeaderCell>
                             <Table.HeaderCell
                                 sorted={sortColumn === TransactionsSortColumn.Username
