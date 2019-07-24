@@ -48,6 +48,7 @@ export interface Profile {
     transactionModalData: TransactionModalData;
     sortColumn: TransactionsSortColumn;
     sortDirection: SortDirection;
+    filterName: string;
 }
 
 export interface TransactionInfo {

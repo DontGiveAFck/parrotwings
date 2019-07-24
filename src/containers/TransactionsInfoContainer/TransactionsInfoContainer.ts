@@ -17,14 +17,17 @@ const transactionsInfoSelector = createSelector(
     (state: State): TransactionInfo[] => state.profile.transactionsInfo,
     (state: State): SortDirection => state.profile.sortDirection,
     (state: State): TransactionsSortColumn => state.profile.sortColumn,
+    (state: State): string => state.profile.filterName,
     (
         transactionsInfo,
         sortDirection,
-        sortColumn
+        sortColumn,
+        filterName
     ) => ({
         transactionsInfo,
         sortDirection,
-        sortColumn
+        sortColumn,
+        filterName
     })
 );
 

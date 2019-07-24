@@ -2,9 +2,10 @@ import * as _ from 'lodash';
 
 import { Reducer } from 'redux';
 import {
+    CHANGE_NAME_FILTER_TEXT,
     CHANGE_SORT_OPTIONS,
     CHANGE_TRANSACTION_AMOUNT,
-    CHANGE_TRANSACTION_NAME,
+    CHANGE_TRANSACTION_NAME, ChangeNameFilterText,
     ChangeSortOptions,
     ChangeTransactionAmount,
     ChangeTransactionName,
@@ -41,7 +42,8 @@ function fetchProfileDataSuccess(
         ...state,
         userInfo,
         transactionsInfo,
-        isLoading: false
+        isLoading: false,
+        filterName: ''
     };
 }
 
@@ -160,6 +162,16 @@ function changeSortOptions(
     };
 }
 
+function changeFilterNameText(
+    state: Profile,
+    action: ChangeNameFilterText
+): Profile {
+    return {
+        ...state,
+        filterName: action.text
+    };
+}
+
 export const profileReducer: Reducer<Profile, Action> = (
     state: Profile = profileState,
     action: Action
@@ -183,6 +195,8 @@ export const profileReducer: Reducer<Profile, Action> = (
             return fetchProfileData(state, action);
         case CHANGE_SORT_OPTIONS:
             return changeSortOptions(state, action);
+        case CHANGE_NAME_FILTER_TEXT:
+            return changeFilterNameText(state, action);
         default:
             return state;
     }

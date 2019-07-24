@@ -206,3 +206,20 @@ export function changeSortOptions(
         column,
     };
 }
+
+export const CHANGE_NAME_FILTER_TEXT = 'CHANGE_NAME_FILTER_TEXT';
+type CHANGE_NAME_FILTER_TEXT = typeof CHANGE_NAME_FILTER_TEXT;
+
+export interface ChangeNameFilterText {
+    type: CHANGE_NAME_FILTER_TEXT;
+    text: string;
+}
+
+export function changNameFilterText(
+    text: string,
+): ChangeNameFilterText {
+    return {
+        type: CHANGE_NAME_FILTER_TEXT,
+        text,
+    };
+}

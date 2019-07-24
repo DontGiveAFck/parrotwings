@@ -18,16 +18,13 @@ interface TransactionModalProps {
 }
 
 class TransactionModal extends Component<TransactionModalProps> {
-    private dropdownRef: RefObject<Component<DropdownProps, any, any>> = React.createRef();
-
     render() {
         const {
             transactionModalOpened,
             closeTransactionModal,
             transactionModalData,
             changeTransactionName,
-            changeTransactionAmount,
-            createTransaction
+            changeTransactionAmount
         } = this.props;
         const {
             name, amount, suggestedUsersList, errorText = ''
@@ -54,7 +51,6 @@ class TransactionModal extends Component<TransactionModalProps> {
                                     }
                                     options={suggestedUsersList}
                                     onChange={this.onSelectTransactionName.bind(this)}
-                                    ref={this.dropdownRef}
                                     text={name}
                                 />
                             </Form.Field>

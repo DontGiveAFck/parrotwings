@@ -5,7 +5,8 @@ import {
     Container,
     Icon,
     Dimmer,
-    Loader
+    Loader,
+    Input
 } from 'semantic-ui-react';
 import {
     TransactionInfo,
@@ -24,6 +25,7 @@ interface ProfilePageProps {
     transactionsInfo: TransactionInfo[];
     openTransactionModal: (name?: string, amount?: number) => void;
     logout: () => void;
+    changeFilterNameText: (text: string) => void;
 }
 
 class ProfilePage extends Component<ProfilePageProps> {
@@ -57,6 +59,7 @@ class ProfilePage extends Component<ProfilePageProps> {
                             {this.getUserInfo()}
                             <TransactionsInfoCointainer />
                             <TransactionModalContainer />
+                            {this.getFilterByNameField()}
                         </Container>
                     </div>
                 )}
@@ -94,6 +97,19 @@ class ProfilePage extends Component<ProfilePageProps> {
                         <span>Logout</span>
                     </a>
                 </div>
+            </div>
+        );
+    };
+
+    private getFilterByNameField = () => {
+        const { changeFilterNameText } = this.props;
+
+        return (
+            <div className={BLOCK('NameFilter')}>
+                <Input
+                    placeholder="Enter name for filter"
+                    onChange={e => changeFilterNameText(e.target.value)}
+                />
             </div>
         );
     };

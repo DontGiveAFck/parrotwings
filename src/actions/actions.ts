@@ -8,7 +8,7 @@ import {
 } from './auth';
 import {
     ChangeSortOptions,
-    ChangeTransactionAmount, ChangeTransactionName,
+    ChangeTransactionAmount, ChangeTransactionName, ChangeNameFilterText,
     CloseTransactionModal, CreateTransactionFailure,
     FetchProfileData,
     FetchProfileDataFailure,
@@ -35,4 +35,5 @@ export type Action =
     | UpdateSuggestedUsersList
     | CreateTransactionFailure
     | ChangeSortOptions
+    | ChangeNameFilterText
     | GoToRegistrationPage;

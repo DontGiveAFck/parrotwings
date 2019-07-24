@@ -14,3 +14,7 @@
 .TransactionsInfo-Title {
     text-align: center;
 }
+
+.TransactionInfo-Help {
+    margin-bottom: 5px;
+}

@@ -31,7 +31,8 @@ export const profileState: Profile = {
         suggestedUsersList: []
     },
     sortColumn: TransactionsSortColumn.Date,
-    sortDirection: SortDirection.DESC
+    sortDirection: SortDirection.DESC,
+    filterName: ''
 };
 
 export const initialState: State = {
@@ -40,7 +41,6 @@ export const initialState: State = {
 };
 
 export type Reducers = ReducersMapObject<State>;
-export type LoadedReducers = Partial<Reducers>;
 
 export default (history: History) => combineReducers({
     router: connectRouter(history),

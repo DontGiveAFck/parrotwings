@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, ReactElement } from 'react';
 import './TransactionsInfo.css';
 import { cn } from '@bem-react/classname';
 import { Button, Table, Header } from 'semantic-ui-react';
@@ -12,10 +12,12 @@ interface TransactionsInfoProps {
     changeSortType: (column : TransactionsSortColumn) => void;
     sortDirection: SortDirection;
     sortColumn: TransactionsSortColumn;
+    filterName: string;
 }
 
 class TransactionsInfo extends Component<TransactionsInfoProps> {
     render() {
+        console.log('render');
         return (
             <div
                 className={BLOCK()}
@@ -23,12 +25,13 @@ class TransactionsInfo extends Component<TransactionsInfoProps> {
                 <Header as="h2" className={BLOCK('Title')}>
                     Transactions history
                 </Header>
+                <span className={BLOCK('Help')}>Click on header cells for sorting</span>
                 {this.getTable()}
             </div>
         );
     }
 
-    private getTableRow = (transactionRow: TransactionInfo) => {
+    private getTableRow = (transactionRow: TransactionInfo): ReactElement => {
         const {
             id,
             balance,
@@ -57,15 +60,19 @@ class TransactionsInfo extends Component<TransactionsInfoProps> {
         );
     };
 
-    private getTableEmptyRow = () => (
+    private getTableEmptyRow = (): ReactElement => (
         <Table.Row>
             <Table.Cell>No transactions</Table.Cell>
         </Table.Row>
     );
 
     private getTable = () => {
-        const { transactionsInfo, sortDirection, sortColumn } = this.props;
-        const sortDirectionCell = sortDirection === SortDirection.ASC ? 'ascending' : 'descending';
+        const { sortDirection, sortColumn } = this.props;
+        const sortDirectionCell = sortDirection === SortDirection.ASC
+            ? 'ascending'
+            : 'descending';
+        const filteredTransactions = this.getFilteredTransactions();
+
         return (
             <div className={BLOCK('Table')}>
                 <Table selectable sortable celled compact fixed>
@@ -101,9 +108,9 @@ class TransactionsInfo extends Component<TransactionsInfoProps> {
                     </Table.Header>
 
                     <Table.Body>
-                        {transactionsInfo.length === 0
+                        {filteredTransactions.length === 0
                             ? this.getTableEmptyRow()
-                            : transactionsInfo.map(row => this.getTableRow(row))}
+                            : filteredTransactions.map(row => this.getTableRow(row))}
                     </Table.Body>
                 </Table>
             </div>
@@ -111,9 +118,14 @@ class TransactionsInfo extends Component<TransactionsInfoProps> {
         );
     };
 
-    private handleSort = (clickedColumn: TransactionsSortColumn) => {
+    private handleSort = (clickedColumn: TransactionsSortColumn): void => {
         const { changeSortType } = this.props;
         changeSortType(clickedColumn);
+    };
+
+    private getFilteredTransactions = (): TransactionInfo[] => {
+        const { filterName, transactionsInfo } = this.props;
+        return transactionsInfo.filter(transaction => transaction.username.includes(filterName));
     };
 }
 

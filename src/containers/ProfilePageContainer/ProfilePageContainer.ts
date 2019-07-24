@@ -10,7 +10,8 @@ import ProfilePage from '../../components/ProfilePage/ProfilePage';
 import {
     fetchProfileData,
     openTransactionModal,
-    logout
+    logout,
+    changNameFilterText
 } from '../../actions/profile';
 
 const profilePageSelector = createSelector(
@@ -40,7 +41,8 @@ const mapDispatchToProps = (
     fetchProfileData: () => dispatch(fetchProfileData()),
     openTransactionModal:
         (name?: string, amount?: number) => dispatch(openTransactionModal(name, amount)),
-    logout: () => dispatch(logout())
+    logout: () => dispatch(logout()),
+    changeFilterNameText: (text: string) => dispatch(changNameFilterText(text))
 });
 
 export default connect(
