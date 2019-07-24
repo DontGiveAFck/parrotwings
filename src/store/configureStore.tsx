@@ -7,7 +7,9 @@ import createRootReducer from '../reducers/rootReducer';
 import { State } from '../typings/common';
 import epics from '../epics/epics';
 
-export const history = createBrowserHistory();
+export const history = createBrowserHistory({
+    basename: process.env.PUBLIC_URL,
+});
 
 const epicMiddleware = createEpicMiddleware();
 
