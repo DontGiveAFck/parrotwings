@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "./static/css/main.79e499e7.chunk.css",
-    "main.js": "./static/js/main.5edfcb03.chunk.js",
-    "main.js.map": "./static/js/main.5edfcb03.chunk.js.map",
-    "runtime~main.js": "./static/js/runtime~main.d653cc00.js",
-    "runtime~main.js.map": "./static/js/runtime~main.d653cc00.js.map",
-    "static/css/2.9c7c3dac.chunk.css": "./static/css/2.9c7c3dac.chunk.css",
-    "static/js/2.4d514529.chunk.js": "./static/js/2.4d514529.chunk.js",
-    "static/js/2.4d514529.chunk.js.map": "./static/js/2.4d514529.chunk.js.map",
-    "index.html": "./index.html",
-    "precache-manifest.3a95b4a966657297c79cb08c29d92a2f.js": "./precache-manifest.3a95b4a966657297c79cb08c29d92a2f.js",
-    "service-worker.js": "./service-worker.js",
-    "static/css/2.9c7c3dac.chunk.css.map": "./static/css/2.9c7c3dac.chunk.css.map",
-    "static/css/main.79e499e7.chunk.css.map": "./static/css/main.79e499e7.chunk.css.map",
-    "static/media/bg-pr.jpg": "./static/media/bg-pr.a427234a.jpg",
-    "static/media/bg-start-o.jpg": "./static/media/bg-start-o.17042cbc.jpg",
-    "static/media/semantic.min.css": "./static/media/outline-icons.ef60a4f6.woff"
+    "main.css": "/parrotwings/static/css/main.79e499e7.chunk.css",
+    "main.js": "/parrotwings/static/js/main.bc6a853e.chunk.js",
+    "main.js.map": "/parrotwings/static/js/main.bc6a853e.chunk.js.map",
+    "runtime~main.js": "/parrotwings/static/js/runtime~main.7d4fd8d7.js",
+    "runtime~main.js.map": "/parrotwings/static/js/runtime~main.7d4fd8d7.js.map",
+    "static/css/2.b4d829ad.chunk.css": "/parrotwings/static/css/2.b4d829ad.chunk.css",
+    "static/js/2.4d514529.chunk.js": "/parrotwings/static/js/2.4d514529.chunk.js",
+    "static/js/2.4d514529.chunk.js.map": "/parrotwings/static/js/2.4d514529.chunk.js.map",
+    "index.html": "/parrotwings/index.html",
+    "precache-manifest.60ce7d369ccde2192a38f5744e379241.js": "/parrotwings/precache-manifest.60ce7d369ccde2192a38f5744e379241.js",
+    "service-worker.js": "/parrotwings/service-worker.js",
+    "static/css/2.b4d829ad.chunk.css.map": "/parrotwings/static/css/2.b4d829ad.chunk.css.map",
+    "static/css/main.79e499e7.chunk.css.map": "/parrotwings/static/css/main.79e499e7.chunk.css.map",
+    "static/media/bg-pr.jpg": "/parrotwings/static/media/bg-pr.a427234a.jpg",
+    "static/media/bg-start-o.jpg": "/parrotwings/static/media/bg-start-o.17042cbc.jpg",
+    "static/media/semantic.min.css": "/parrotwings/static/media/outline-icons.ef60a4f6.woff"
   }
 }
