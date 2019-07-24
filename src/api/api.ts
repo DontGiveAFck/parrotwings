@@ -42,9 +42,7 @@ export default class {
     }
 
 
-    static getTransactions() {
-        // TODO - вынести отсюда
-        const tokenId = LocalStorage.getValue('id_token');
+    static getTransactions(tokenId: string) {
         const request = fetch(`${URL}/api/protected/transactions`, {
             method: 'GET',
             headers: {
@@ -61,9 +59,7 @@ export default class {
         return fromPromise(request);
     }
 
-    static getUserInfo() {
-        // TODO - вынести отсюда
-        const tokenId = LocalStorage.getValue('id_token');
+    static getUserInfo(tokenId: string) {
         const request = fetch(`${URL}/api/protected/user-info`, {
             method: 'GET',
             headers: {

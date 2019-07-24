@@ -6,7 +6,7 @@ import {
 import { cn } from '@bem-react/classname';
 import Header from 'semantic-ui-react/dist/commonjs/elements/Header';
 import * as EmailValidator from 'email-validator';
-import background from '../../assets/images/bg-start-o.jpg';
+import background from '../../assets/images/bg-pr.jpg';
 import { ANIMATION_DURATION_AUTH_PAGE } from '../../constants/numberConstants';
 import { AuthField, UserAuth } from '../../typings/common';
 

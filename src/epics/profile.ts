@@ -18,17 +18,20 @@ export const fetchProfileDataEpic = (
     action$: ActionsObservable<FetchProfileData>
 ) => action$.pipe(
     ofType(FETCH_PROFILE_DATA),
-    mergeMap((action: FetchProfileData) => forkJoin(
-        API.getUserInfo(),
-        API.getTransactions()
-    ).pipe(
-        map(res => {
-            const userInfo = mapUserInfo(res[0].data.user_info_token);
-            const transactionsInfo = res[1].data.trans_token;
-            return fetchProfileDataSuccess(userInfo, transactionsInfo);
-        }),
-        catchError(error => of(logout(), push('/'), userAuthFailure(error.message)))
-    )),
+    mergeMap((action: FetchProfileData) => {
+        const tokenId = LocalStorage.getValue('id_token') || '';
+        return forkJoin(
+            API.getUserInfo(tokenId),
+            API.getTransactions(tokenId)
+        ).pipe(
+            map(res => {
+                const userInfo = mapUserInfo(res[0].data.user_info_token);
+                const transactionsInfo = res[1].data.trans_token;
+                return fetchProfileDataSuccess(userInfo, transactionsInfo);
+            }),
+            catchError(error => of(logout(), push('/'), userAuthFailure(error.message)))
+        );
+    }),
 );
 
 export const fetchFilteredUsersListEpic = (
