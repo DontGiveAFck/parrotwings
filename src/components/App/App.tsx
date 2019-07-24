@@ -5,9 +5,9 @@ import { Header } from 'semantic-ui-react';
 import { ConnectedRouter } from 'connected-react-router';
 import { Route, Switch } from 'react-router';
 import { history } from '../../store/configureStore';
-import LoginPage from '../../containers/LoginPage/LoginPage';
-import RegistrationPage from '../../containers/RegistrationPage/RegistrationPage';
-import ProfilePage from '../../containers/ProfilePage/ProfilePage';
+import LoginPageContainer from '../../containers/LoginPageContainer/LoginPageContainer';
+import RegistrationPageContainer from '../../containers/RegistrationPageContainer/RegistrationPageContainer';
+import ProfilePageContainer from '../../containers/ProfilePageContainer/ProfilePageContainer';
 import LocalStorage from '../../services/LocalStorage';
 
 const BLOCK = cn('App');
@@ -31,9 +31,9 @@ class App extends Component<AppProps> {
                 <ConnectedRouter history={history}>
                     <>
                         <Switch>
-                            <Route exact path="/" render={() => <LoginPage />} />
-                            <Route exact path="/registration" render={() => <RegistrationPage />} />
-                            <Route exact path="/profile" render={() => <ProfilePage />} />
+                            <Route exact path="/" render={() => <LoginPageContainer />} />
+                            <Route exact path="/registration" render={() => <RegistrationPageContainer />} />
+                            <Route exact path="/profile" render={() => <ProfilePageContainer />} />
                             <Route render={
                                 () => (
                                     <div className={BLOCK('NotFoundPage')}>

@@ -5,8 +5,7 @@ import { AuthField, State, UserAuth } from '../../typings/common';
 import LoginPage from '../../components/LoginPage/LoginPage';
 import { changeAuthField, goToRegistrationPage, login } from '../../actions/auth';
 
-const variableSelector = createSelector(
-    // @ts-ignore
+const logitPageSelector = createSelector(
     (state: State): string => state.auth.credentials.email,
     (state: State): string => state.auth.credentials.password,
     (state: State): string | undefined => state.auth.errorText,
@@ -20,7 +19,7 @@ const variableSelector = createSelector(
 const mapStateToProps = (
     state: State
 ) => ({
-    ...variableSelector(state)
+    ...logitPageSelector(state)
 });
 
 const mapDispatchToProps = (

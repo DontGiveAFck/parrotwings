@@ -5,28 +5,25 @@ import { AuthField, State, UserAuth } from '../../typings/common';
 import { goToLoginPage, registation, changeAuthField } from '../../actions/auth';
 import RegistrationPage, { RegistrationPageProps } from '../../components/RegistrationPage/RegistrationPage';
 
-const variableSelector = createSelector(
-    // @ts-ignore
-    (state: State): string => state.auth.credentials.username,
+const registrationPageSelector = createSelector(
+    (state: State): string | undefined => state.auth.credentials.username,
     (state: State): string => state.auth.credentials.email,
     (state: State): string => state.auth.credentials.password,
     (state: State): string | undefined => state.auth.credentials.rPassword,
     (state: State): string | undefined => state.auth.errorText,
-    (username, email, password, rPassword, errorText) => {
-        return ({
-            username,
-            email,
-            password,
-            rPassword,
-            errorText
-        });
-    }
+    (username, email, password, rPassword, errorText) => ({
+        username,
+        email,
+        password,
+        rPassword,
+        errorText
+    })
 );
 
 const mapStateToProps = (
     state: State
 ) => ({
-    ...variableSelector(state)
+    ...registrationPageSelector(state)
 });
 
 const mapDispatchToProps = (

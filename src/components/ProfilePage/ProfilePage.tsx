@@ -9,13 +9,10 @@ import {
 } from 'semantic-ui-react';
 import {
     TransactionInfo,
-    TransactionModalData,
-    TransactionsSortColumn,
-    SortDirection,
     UserInfo
 } from '../../typings/common';
-import TransactionsInfo from '../TransactionsInfo/TransactionsInfo';
-import TransactionModal from '../TransactionModal/TransactionModal';
+import TransactionsInfoCointainer from '../../containers/TransactionsInfoContainer/TransactionsInfoContainer';
+import TransactionModalContainer from '../../containers/TransactionModalContainer/TransactionModalContainer';
 import background from '../../assets/images/bg-pr.jpg';
 
 const BLOCK = cn('ProfilePage');
@@ -25,17 +22,8 @@ interface ProfilePageProps {
     isLoading: boolean;
     userInfo: UserInfo;
     transactionsInfo: TransactionInfo[];
-    transactionModalOpened: boolean;
     openTransactionModal: (name?: string, amount?: number) => void;
-    closeTransactionModal: () => void;
-    transactionModalData: TransactionModalData;
-    changeTransactionName: (name: string) => void;
-    changeTransactionAmount: (amount: number) => void;
-    createTransaction: (name: string, amount: number) => void;
     logout: () => void;
-    changeSortType: (column : TransactionsSortColumn) => void;
-    sortDirection: SortDirection;
-    sortColumn: TransactionsSortColumn;
 }
 
 class ProfilePage extends Component<ProfilePageProps> {
@@ -46,18 +34,7 @@ class ProfilePage extends Component<ProfilePageProps> {
 
     render() {
         const {
-            transactionModalOpened,
-            closeTransactionModal,
-            transactionModalData,
-            changeTransactionName,
-            changeTransactionAmount,
-            createTransaction,
-            transactionsInfo,
-            openTransactionModal,
             isLoading,
-            changeSortType,
-            sortDirection,
-            sortColumn
         } = this.props;
 
         return (
@@ -78,22 +55,8 @@ class ProfilePage extends Component<ProfilePageProps> {
                     >
                         <Container>
                             {this.getUserInfo()}
-                            <TransactionsInfo
-                                transactionsInfo={transactionsInfo}
-                                openTransactionModal={openTransactionModal}
-                                changeSortType={changeSortType}
-                                sortDirection={sortDirection}
-                                sortColumn={sortColumn}
-
-                            />
-                            <TransactionModal
-                                transactionModalOpened={transactionModalOpened}
-                                closeTransactionModal={closeTransactionModal}
-                                transactionModalData={transactionModalData}
-                                changeTransactionName={changeTransactionName}
-                                changeTransactionAmount={changeTransactionAmount}
-                                createTransaction={createTransaction}
-                            />
+                            <TransactionsInfoCointainer />
+                            <TransactionModalContainer />
                         </Container>
                     </div>
                 )}
