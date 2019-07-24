@@ -63,10 +63,15 @@ export const createTransactionEpic = (
     action$: ActionsObservable<CreateTransaction>
 ) => action$.pipe(
     ofType(CREATE_TRANSACTION),
-    mergeMap((action: CreateTransaction) => API.createTransaction(action.name, action.amount).pipe(
-        mergeMap(() => of(fetchProfileData(), closeTransactionModal())),
-        catchError(error => of(createTransactionFailure(error.message)))
-    )),
+    mergeMap((action: CreateTransaction) => {
+        if (action.amount <= 0) {
+            return of(createTransactionFailure('Amount field can\'t be empty'));
+        }
+        return API.createTransaction(action.name, action.amount).pipe(
+            mergeMap(() => of(fetchProfileData(), closeTransactionModal())),
+            catchError(error => of(createTransactionFailure(error.message)))
+        );
+    })
 );
 
 export const logoutEpic = (

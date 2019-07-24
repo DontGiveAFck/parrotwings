@@ -5,6 +5,7 @@ import {
     Modal, Button, Header, Icon, Form, Dropdown, Message
 } from 'semantic-ui-react';
 import { TransactionModalData } from '../../typings/common';
+import { INTEGER_PATTERN } from '../../constants/numberConstants';
 
 const BLOCK = cn('TransactionModal');
 
@@ -23,11 +24,10 @@ class TransactionModal extends Component<TransactionModalProps> {
             transactionModalOpened,
             closeTransactionModal,
             transactionModalData,
-            changeTransactionName,
-            changeTransactionAmount
+            changeTransactionName
         } = this.props;
         const {
-            name, amount, suggestedUsersList, errorText = ''
+            name, amount, suggestedUsersList, isLoading, errorText = ''
         } = transactionModalData;
 
         return (
@@ -59,8 +59,10 @@ class TransactionModal extends Component<TransactionModalProps> {
                                 <Form.Input
                                     value={amount || ''}
                                     placeholder="Amount"
-                                    type="number"
-                                    onChange={e => changeTransactionAmount(Number(e.target.value))}
+                                    type="text"
+                                    pattern="^-?[0-9]+$"
+                                    // @ts-ignore
+                                    onChange={e => this.onChangeTransactionAmount(e.target.value)}
                                 />
                             </Form.Field>
                             <Message
@@ -71,13 +73,18 @@ class TransactionModal extends Component<TransactionModalProps> {
                         </Form>
                     </Modal.Content>
                     <Modal.Actions>
-                        <Button color="red" onClick={closeTransactionModal}>
+                        <Button
+                            color="red"
+                            onClick={closeTransactionModal}
+                            disabled={isLoading}
+                        >
                             <Icon name="remove" />
                             Cancel
                         </Button>
                         <Button
                             color="green"
                             onClick={this.onConfirmButtonClick}
+                            loading={isLoading}
                         >
                             <Icon name="checkmark" />
                             Confirm
@@ -98,6 +105,16 @@ class TransactionModal extends Component<TransactionModalProps> {
     private onSelectTransactionName = (e: any, { value } : any) => {
         const { changeTransactionName } = this.props;
         changeTransactionName(value);
+    };
+
+    private onChangeTransactionAmount = (value: string) => {
+        const { changeTransactionAmount } = this.props;
+        if (INTEGER_PATTERN.test(value)) {
+            const numberValue = Number(value);
+            if (numberValue < Number.MAX_SAFE_INTEGER) {
+                changeTransactionAmount(Number(value));
+            }
+        }
     };
 }
 

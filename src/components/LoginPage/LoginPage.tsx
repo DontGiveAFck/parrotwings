@@ -19,6 +19,7 @@ interface LoginPageProps {
     onChangeAuthField: (field: AuthField, value: string) => void;
     onLoginButtonClick: (credentials: UserAuth) => void;
     errorText?: string;
+    isLoading: boolean;
 }
 
 class LoginPage extends Component<LoginPageProps> {
@@ -56,16 +57,23 @@ class LoginPage extends Component<LoginPageProps> {
     }
 
     private getLoginForm = () => {
-        const { loginFormVisible, loginButtonActive } = this.state;
         const {
-            openRegistrationPageClick, onChangeAuthField, errorText
+            loginFormVisible,
+            loginButtonActive
+        } = this.state;
+        const {
+            openRegistrationPageClick,
+            onChangeAuthField,
+            errorText,
+            isLoading
         } = this.props;
+
         return (
             <Transition visible={loginFormVisible} animation="fade" duration={ANIMATION_DURATION_AUTH_PAGE}>
                 <div className={BLOCK('Form')}>
                     <Form error={Boolean(errorText)}>
                         <Form.Field>
-                            <label htmlFor="email-input">E-mail</label>
+                            <label htmlFor="email-input">E-mail*</label>
                             <Form.Input
                                 icon="mail"
                                 iconPosition="left"
@@ -81,7 +89,7 @@ class LoginPage extends Component<LoginPageProps> {
                             />
                         </Form.Field>
                         <Form.Field>
-                            <label>Password</label>
+                            <label>Password*</label>
                             <Form.Input
                                 icon="lock"
                                 iconPosition="left"
@@ -95,6 +103,7 @@ class LoginPage extends Component<LoginPageProps> {
                         <Form.Field>
                             <div className={BLOCK('LoginBtn')}>
                                 <Button
+                                    loading={isLoading}
                                     type="submit"
                                     color="instagram"
                                     onClick={this.loginButtonClick}

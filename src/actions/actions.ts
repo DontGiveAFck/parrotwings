@@ -8,13 +8,18 @@ import {
 } from './auth';
 import {
     ChangeSortOptions,
-    ChangeTransactionAmount, ChangeTransactionName, ChangeNameFilterText,
-    CloseTransactionModal, CreateTransactionFailure,
+    ChangeTransactionAmount,
+    ChangeTransactionName,
+    ChangeNameFilterText,
+    CloseTransactionModal,
+    CreateTransactionFailure,
     FetchProfileData,
     FetchProfileDataFailure,
-    FetchProfileDataSuccess, Logout,
+    FetchProfileDataSuccess,
+    Logout,
     OpenTransactionModal,
-    UpdateSuggestedUsersList
+    UpdateSuggestedUsersList,
+    CreateTransaction
 } from './profile';
 
 export type Action =
@@ -36,4 +41,5 @@ export type Action =
     | CreateTransactionFailure
     | ChangeSortOptions
     | ChangeNameFilterText
+    | CreateTransaction
     | GoToRegistrationPage;

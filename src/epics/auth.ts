@@ -46,21 +46,27 @@ export const registrationEpic = (
     action$: ActionsObservable<Registration>
 ) => action$.pipe(
     ofType(REGISTRATION),
-    mergeMap((action: any) => API.registration(action.credentials).pipe(
-        map(res => {
-            const idToken = res.data.id_token;
-            LocalStorage.setValue('id_token', idToken);
-            return userAuthSuccess(idToken);
-        }),
-        catchError(error => of(userAuthFailure(error.message)))
-    )),
+    mergeMap((action: Registration) => {
+        if (!action.credentials.email) {
+            return of(userAuthFailure("E-mail field can't be empty"));
+        }
+
+        return API.registration(action.credentials).pipe(
+            map(res => {
+                const idToken = res.data.id_token;
+                LocalStorage.setValue('id_token', idToken);
+                return userAuthSuccess(idToken);
+            }),
+            catchError(error => of(userAuthFailure(error.message)))
+        );
+    })
 );
 
 export const loginEpic = (
     action$: ActionsObservable<Login>
 ) => action$.pipe(
     ofType(LOGIN),
-    mergeMap((action: any) => API.login(action.credentials).pipe(
+    mergeMap((action: Login) => API.login(action.credentials).pipe(
         map(res => {
             const idToken = res.data.id_token;
             LocalStorage.setValue('id_token', idToken);

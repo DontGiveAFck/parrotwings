@@ -14,7 +14,8 @@ export const authPageState: AuthPageState = {
         email: '',
         password: '',
         rPassword: ''
-    }
+    },
+    isLoading: false
 };
 
 export const profileState: Profile = {
@@ -28,7 +29,8 @@ export const profileState: Profile = {
     transactionModalData: {
         name: '',
         amount: 0,
-        suggestedUsersList: []
+        suggestedUsersList: [],
+        isLoading: false
     },
     sortColumn: TransactionsSortColumn.Date,
     sortDirection: SortDirection.DESC,

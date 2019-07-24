@@ -11,8 +11,8 @@ import {
     ChangeTransactionAmount,
     ChangeTransactionName,
     CLOSE_TRANSACTION_MODAL,
-    CloseTransactionModal,
-    CREATE_TRANSACTION_FAILURE,
+    CloseTransactionModal, CREATE_TRANSACTION,
+    CREATE_TRANSACTION_FAILURE, CreateTransaction,
     CreateTransactionFailure,
     FETCH_PROFILE_DATA,
     FETCH_PROFILE_DATA_SUCCESS,
@@ -56,6 +56,7 @@ function openTransactionModal(
         ...state,
         transactionModalOpened: true,
         transactionModalData: {
+            ...state.transactionModalData,
             name: action.name || '',
             amount: action.amount || 0,
             suggestedUsersList: []
@@ -69,7 +70,11 @@ function closeTransactionModal(
 ): Profile {
     return {
         ...state,
-        transactionModalOpened: false
+        transactionModalOpened: false,
+        transactionModalData: {
+            ...state.transactionModalData,
+            errorText: ''
+        }
     };
 }
 
@@ -122,7 +127,8 @@ function createTransactionFailure(
         ...state,
         transactionModalData: {
             ...state.transactionModalData,
-            errorText: action.errorText
+            errorText: action.errorText,
+            isLoading: false
         }
     };
 }
@@ -133,7 +139,11 @@ function fetchProfileData(
 ): Profile {
     return {
         ...state,
-        isLoading: true
+        isLoading: true,
+        transactionModalData: {
+            ...state.transactionModalData,
+            isLoading: false
+        }
     };
 }
 
@@ -182,6 +192,19 @@ function changeFilterNameText(
     };
 }
 
+function createTransaction(
+    state: Profile,
+    action: CreateTransaction
+): Profile {
+    return {
+        ...state,
+        transactionModalData: {
+            ...state.transactionModalData,
+            isLoading: true
+        }
+    };
+}
+
 export const profileReducer: Reducer<Profile, Action> = (
     state: Profile = profileState,
     action: Action
@@ -207,6 +230,8 @@ export const profileReducer: Reducer<Profile, Action> = (
             return changeSortOptions(state, action);
         case CHANGE_NAME_FILTER_TEXT:
             return changeFilterNameText(state, action);
+        case CREATE_TRANSACTION:
+            return createTransaction(state, action);
         default:
             return state;
     }

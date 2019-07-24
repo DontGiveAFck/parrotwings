@@ -17,7 +17,6 @@ interface TransactionsInfoProps {
 
 class TransactionsInfo extends Component<TransactionsInfoProps> {
     render() {
-        console.log('render');
         return (
             <div
                 className={BLOCK()}

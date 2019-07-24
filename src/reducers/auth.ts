@@ -10,8 +10,8 @@ import {
     GO_TO_LOGIN_PAGE,
     GO_TO_REGISTRATION_PAGE,
     GoToLoginPage,
-    GoToRegistrationPage,
-    USER_AUTH_FAILURE,
+    GoToRegistrationPage, LOGIN, Login, REGISTRATION,
+    USER_AUTH_FAILURE, USER_AUTH_SUCCESS,
     UserAuthFailure
 } from '../actions/auth';
 import { MAX_USERNAME_LENGTH } from '../constants/numberConstants';
@@ -61,6 +61,26 @@ function logout(
     };
 }
 
+function login(
+    state: AuthPageState,
+    action: Login
+): AuthPageState {
+    return {
+        ...state,
+        isLoading: true
+    };
+}
+
+function loginSuccess(
+    state: AuthPageState,
+    action: Login
+): AuthPageState {
+    return {
+        ...state,
+        isLoading: true
+    };
+}
+
 function changeAuthField(
     state: AuthPageState,
     action: ChangeAuthField
@@ -100,7 +120,8 @@ function setAuthErrorText(
 ): AuthPageState {
     return {
         ...state,
-        errorText: action.errorText
+        errorText: action.errorText,
+        isLoading: false
     };
 }
 
@@ -119,6 +140,17 @@ export const authReducer: Reducer<AuthPageState, Action> = (
             return setAuthErrorText(state, action);
         case LOGOUT:
             return logout(state, action);
+        case REGISTRATION:
+        case LOGIN:
+            return {
+                ...state,
+                isLoading: true
+            };
+        case USER_AUTH_SUCCESS:
+            return {
+                ...state,
+                isLoading: false
+            };
         default:
             return state;
     }

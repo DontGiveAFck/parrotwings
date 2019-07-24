@@ -11,12 +11,14 @@ const registrationPageSelector = createSelector(
     (state: State): string => state.auth.credentials.password,
     (state: State): string | undefined => state.auth.credentials.rPassword,
     (state: State): string | undefined => state.auth.errorText,
-    (username, email, password, rPassword, errorText) => ({
+    (state: State): boolean => state.auth.isLoading,
+    (username, email, password, rPassword, errorText, isLoading) => ({
         username,
         email,
         password,
         rPassword,
-        errorText
+        errorText,
+        isLoading
     })
 );
 

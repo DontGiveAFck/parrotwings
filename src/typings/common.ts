@@ -4,9 +4,10 @@ export interface State {
 }
 
 export interface AuthPageState {
-    page: AuthPage,
-    credentials: UserAuth,
-    errorText?: string
+    page: AuthPage;
+    credentials: UserAuth;
+    errorText?: string;
+    isLoading: boolean;
 }
 
 export enum AuthPage {
@@ -38,6 +39,7 @@ export interface TransactionModalData {
     amount: number;
     suggestedUsersList: SuggestedUsersListClientFormat[];
     errorText?: string;
+    isLoading: boolean
 }
 
 export interface Profile {

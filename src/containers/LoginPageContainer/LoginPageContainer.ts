@@ -9,10 +9,12 @@ const logitPageSelector = createSelector(
     (state: State): string => state.auth.credentials.email,
     (state: State): string => state.auth.credentials.password,
     (state: State): string | undefined => state.auth.errorText,
-    (email, password, errorText) => ({
+    (state: State): boolean => state.auth.isLoading,
+    (email, password, errorText, isLoading) => ({
         email,
         password,
-        errorText
+        errorText,
+        isLoading
     })
 );
 

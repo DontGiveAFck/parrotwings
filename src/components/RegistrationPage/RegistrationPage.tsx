@@ -21,6 +21,7 @@ export interface RegistrationPageProps {
     rPassword?: string;
     email: string;
     errorText?: string;
+    isLoading: boolean;
 }
 
 class RegistrationPage extends Component<RegistrationPageProps> {
@@ -67,6 +68,7 @@ class RegistrationPage extends Component<RegistrationPageProps> {
             rPassword,
             username,
             email,
+            isLoading
         } = this.props;
 
         const isPasswordsEqual = rPassword === password;
@@ -75,7 +77,7 @@ class RegistrationPage extends Component<RegistrationPageProps> {
                 <div className={BLOCK('Form')}>
                     <Form error={Boolean(errorText)}>
                         <Form.Field>
-                            <label htmlFor="email-input">E-mail</label>
+                            <label htmlFor="email-input">E-mail*</label>
                             <Form.Input
                                 id="email-input"
                                 type="email"
@@ -91,7 +93,7 @@ class RegistrationPage extends Component<RegistrationPageProps> {
                             />
                         </Form.Field>
                         <Form.Field>
-                            <label>Username</label>
+                            <label>Username*</label>
                             <Form.Input
                                 icon="user"
                                 iconPosition="left"
@@ -105,7 +107,7 @@ class RegistrationPage extends Component<RegistrationPageProps> {
                             />
                         </Form.Field>
                         <Form.Field>
-                            <label>Password</label>
+                            <label>Password*</label>
                             <Form.Input
                                 icon="lock"
                                 iconPosition="left"
@@ -119,7 +121,7 @@ class RegistrationPage extends Component<RegistrationPageProps> {
                             />
                         </Form.Field>
                         <Form.Field>
-                            <label>Repeat password</label>
+                            <label>Repeat password*</label>
                             <Form.Input
                                 icon="lock"
                                 iconPosition="left"
@@ -138,6 +140,7 @@ class RegistrationPage extends Component<RegistrationPageProps> {
                                 <Button
                                     type="submit"
                                     color="instagram"
+                                    loading={isLoading}
                                     onClick={this.onRegistrationButtonClick}
                                     disabled={!registrationButtonActive || !isPasswordsEqual}
                                 >
