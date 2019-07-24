@@ -34,6 +34,13 @@ class App extends Component<AppProps> {
                             <Route exact path="/" render={() => <LoginPageContainer />} />
                             <Route exact path="/registration" render={() => <RegistrationPageContainer />} />
                             <Route exact path="/profile" render={() => <ProfilePageContainer />} />
+                            <Route render={
+                                () => (
+                                    <div className={BLOCK('NotFoundPage')}>
+                                        <Header as="h1">404 - Not found</Header>
+                                    </div>
+                                )}
+                            />
                         </Switch>
                     </>
                 </ConnectedRouter>
