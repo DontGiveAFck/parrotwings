@@ -31,9 +31,9 @@ class App extends Component<AppProps> {
                 <ConnectedRouter history={history}>
                     <>
                         <Switch>
-                            <Route exact path="/" render={() => <LoginPageContainer />} />
-                            <Route exact path="/registration" render={() => <RegistrationPageContainer />} />
-                            <Route exact path="/profile" render={() => <ProfilePageContainer />} />
+                            <Route exact path={`${process.env.PUBLIC_URL}/`} render={() => <LoginPageContainer />} />
+                            <Route exact path={`${process.env.PUBLIC_URL}/registration`} render={() => <RegistrationPageContainer />} />
+                            <Route exact path={`${process.env.PUBLIC_URL}/profile`} render={() => <ProfilePageContainer />} />
                             <Route render={
                                 () => (
                                     <div className={BLOCK('NotFoundPage')}>
