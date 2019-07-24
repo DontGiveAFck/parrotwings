@@ -115,7 +115,6 @@ class RegistrationPage extends Component<RegistrationPageProps> {
                                     AuthField.PASSWORD,
                                     e.target.value
                                 )}
-                                error={!isPasswordsEqual}
                                 value={password}
                             />
                         </Form.Field>
