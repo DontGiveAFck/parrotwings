@@ -1,6 +1,5 @@
 import { fromPromise } from 'rxjs/internal-compatibility';
 import { UserAuth } from '../typings/common';
-import LocalStorage from '../services/LocalStorage';
 
 const URL = 'http://193.124.114.46:3001';
 
@@ -76,8 +75,7 @@ export default class {
         return fromPromise(request);
     }
 
-    static getFilteredUsersList(filter: string) {
-        const tokenId = LocalStorage.getValue('id_token');
+    static getFilteredUsersList(filter: string, tokenId: string) {
         const request = fetch(`${URL}/api/protected/users/list`, {
             method: 'POST',
             headers: {
@@ -99,8 +97,7 @@ export default class {
         return fromPromise(request);
     }
 
-    static createTransaction(name: string, amount: number) {
-        const tokenId = LocalStorage.getValue('id_token');
+    static createTransaction(name: string, amount: number, tokenId: string) {
         const request = fetch(`${URL}/api/protected/transactions`, {
             method: 'POST',
             headers: {

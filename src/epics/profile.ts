@@ -53,10 +53,13 @@ export const fetchFilteredUsersListEpic = (
     action$: ActionsObservable<ChangeTransactionName>
 ) => action$.pipe(
     ofType(CHANGE_TRANSACTION_NAME),
-    mergeMap((action: ChangeTransactionName) => API.getFilteredUsersList(action.name).pipe(
-        map(res => updateSuggestedUsersList(res.data)),
-        catchError(error => of(createTransactionFailure(error.message)))
-    )),
+    mergeMap((action: ChangeTransactionName) => {
+        const tokenId = LocalStorage.getValue('id_token') || '';
+        return API.getFilteredUsersList(action.name, tokenId).pipe(
+            map(res => updateSuggestedUsersList(res.data)),
+            catchError(error => of(createTransactionFailure(error.message)))
+        );
+    }),
 );
 
 export const createTransactionEpic = (
@@ -67,7 +70,8 @@ export const createTransactionEpic = (
         if (action.amount <= 0) {
             return of(createTransactionFailure('Amount field can\'t be empty'));
         }
-        return API.createTransaction(action.name, action.amount).pipe(
+        const tokenId = LocalStorage.getValue('id_token') || '';
+        return API.createTransaction(action.name, action.amount, tokenId).pipe(
             mergeMap(() => of(fetchProfileData(), closeTransactionModal())),
             catchError(error => of(createTransactionFailure(error.message)))
         );

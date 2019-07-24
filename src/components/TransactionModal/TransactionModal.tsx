@@ -5,7 +5,7 @@ import {
     Modal, Button, Header, Icon, Form, Dropdown, Message
 } from 'semantic-ui-react';
 import { TransactionModalData } from '../../typings/common';
-import { INTEGER_PATTERN } from '../../constants/numberConstants';
+import { INTEGER_PATTERN } from '../../constants/constants';
 
 const BLOCK = cn('TransactionModal');
 

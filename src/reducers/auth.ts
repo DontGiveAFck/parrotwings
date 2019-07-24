@@ -14,7 +14,7 @@ import {
     USER_AUTH_FAILURE, USER_AUTH_SUCCESS,
     UserAuthFailure
 } from '../actions/auth';
-import { MAX_USERNAME_LENGTH } from '../constants/numberConstants';
+import { MAX_USERNAME_LENGTH } from '../constants/constants';
 import { LOGOUT, Logout } from '../actions/profile';
 
 function goToRegistrationPage(
