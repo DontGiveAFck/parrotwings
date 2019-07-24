@@ -31,3 +31,7 @@
 .LoginPage-RegistrationInfo {
     display: flex;
 }
+.LoginPage-LoginBtn {
+    display: flex;
+    justify-content: center;
+}

@@ -34,7 +34,8 @@ module.exports = {
         "react/jsx-no-bind": "off",
         "react/jsx-one-expression-per-line": "off",
         "react/prefer-stateless-function": "off",
-        "implicit-arrow-linebreak": "off"
+        "implicit-arrow-linebreak": "off",
+        "jsx-a11y/anchor-is-valid": "off"
     },
     "settings": {
         "react": {

@@ -58,7 +58,7 @@ class LoginPage extends Component<LoginPageProps> {
     private getLoginForm = () => {
         const { loginFormVisible, loginButtonActive } = this.state;
         const {
-            openRegistrationPageClick, onChangeAuthField, email, errorText
+            openRegistrationPageClick, onChangeAuthField, errorText
         } = this.props;
         return (
             <Transition visible={loginFormVisible} animation="fade" duration={ANIMATION_DURATION_AUTH_PAGE}>
@@ -93,14 +93,16 @@ class LoginPage extends Component<LoginPageProps> {
                             />
                         </Form.Field>
                         <Form.Field>
-                            <Button
-                                type="submit"
-                                color="instagram"
-                                onClick={this.loginButtonClick}
-                                disabled={!loginButtonActive}
-                            >
-                                Let me in!
-                            </Button>
+                            <div className={BLOCK('LoginBtn')}>
+                                <Button
+                                    type="submit"
+                                    color="instagram"
+                                    onClick={this.loginButtonClick}
+                                    disabled={!loginButtonActive}
+                                >
+                                    Let me in!
+                                </Button>
+                            </div>
                         </Form.Field>
                         <Form.Field>
                             <div className={BLOCK('Actions')}>

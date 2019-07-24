@@ -3,7 +3,7 @@ import { Dispatch } from 'redux';
 import { createSelector } from 'reselect';
 import { AuthField, State, UserAuth } from '../../typings/common';
 import { goToLoginPage, registation, changeAuthField } from '../../actions/auth';
-import RegistrationPage, { RegistrationPageProps } from '../../components/RegistrationPage/RegistrationPage';
+import RegistrationPage from '../../components/RegistrationPage/RegistrationPage';
 
 const registrationPageSelector = createSelector(
     (state: State): string | undefined => state.auth.credentials.username,

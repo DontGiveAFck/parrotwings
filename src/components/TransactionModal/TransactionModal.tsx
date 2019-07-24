@@ -1,8 +1,8 @@
-import React, { Component, RefObject } from 'react';
+import React, { Component } from 'react';
 import './TransactionModal.css';
 import { cn } from '@bem-react/classname';
 import {
-    Modal, Button, Header, Icon, Input, Form, Dropdown, DropdownProps, Message
+    Modal, Button, Header, Icon, Form, Dropdown, Message
 } from 'semantic-ui-react';
 import { TransactionModalData } from '../../typings/common';
 
