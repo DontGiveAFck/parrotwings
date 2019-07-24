@@ -1,6 +1,5 @@
 export default class {
     static setValue(key: string, value: any) {
-        const stringValue = JSON.stringify(value);
         localStorage.setItem(key, value);
     }
 

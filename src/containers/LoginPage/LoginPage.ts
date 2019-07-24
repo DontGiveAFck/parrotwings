@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { createSelector } from 'reselect';
-import { push } from 'connected-react-router';
 import { AuthField, State, UserAuth } from '../../typings/common';
 import LoginPage from '../../components/LoginPage/LoginPage';
 import { changeAuthField, goToRegistrationPage, login } from '../../actions/auth';

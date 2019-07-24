@@ -24,7 +24,7 @@ import {
 import {
     Profile, SortDirection, TransactionInfo
 } from '../typings/common';
-import { Action } from '../actions/action';
+import { Action } from '../actions/actions';
 import { profileState } from './rootReducer';
 import { mapSuggestedUsersList } from '../services/mappers';
 

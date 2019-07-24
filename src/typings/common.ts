@@ -28,10 +28,6 @@ export enum AuthField {
     USERNAME = 'USERNAME'
 }
 
-export interface AuthResponse {
-    status: string;
-}
-
 export interface UserInfo {
     balance: number;
     name: string;
@@ -71,12 +67,6 @@ export enum TransactionsSortColumn {
 export enum SortDirection {
     ASC = 'ASC',
     DESC = 'DESC'
-}
-
-export enum TransactionsFilterType {
-    DATE = 'DATE',
-    NAME = 'NAME',
-    AMOUNT = 'AMOUNT',
 }
 
 export interface SuggestedUsersListApiFormat {

@@ -1,4 +1,4 @@
-import {SortDirection, TransactionInfo, TransactionsSortColumn, UserInfo} from '../typings/common';
+import { TransactionInfo, TransactionsSortColumn, UserInfo } from '../typings/common';
 
 export const FETCH_PROFILE_DATA = 'FETCH_PROFILE_DATA';
 type FETCH_PROFILE_DATA = typeof FETCH_PROFILE_DATA;

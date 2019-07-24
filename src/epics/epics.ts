@@ -1,9 +1,9 @@
 import { combineEpics } from 'redux-observable';
 import {
-    goToRegistrationPage,
-    goToLoginPage,
+    goToRegistrationPageEpic,
+    goToLoginPageEpic,
     registrationEpic,
-    goToProfilePage,
+    goToProfilePageEpic,
     loginEpic
 } from './auth';
 
@@ -15,10 +15,10 @@ import {
 } from './profile';
 
 export default combineEpics(
-    goToRegistrationPage,
-    goToLoginPage,
+    goToRegistrationPageEpic,
+    goToLoginPageEpic,
     registrationEpic,
-    goToProfilePage,
+    goToProfilePageEpic,
     loginEpic,
     fetchProfileDataEpic,
     fetchFilteredUsersListEpic,

@@ -1,4 +1,4 @@
-import { AuthField, UserAuth} from '../typings/common';
+import { AuthField, UserAuth } from '../typings/common';
 
 export const GO_TO_REGISTRATION_PAGE = 'GO_TO_REGISTRATION_PAGE';
 type GO_TO_REGISTRATION_PAGE = typeof GO_TO_REGISTRATION_PAGE;

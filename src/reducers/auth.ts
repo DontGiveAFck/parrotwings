@@ -2,13 +2,15 @@ import { Reducer } from 'redux';
 import {
     AuthField, AuthPage, AuthPageState
 } from '../typings/common';
-import { Action } from '../actions/action';
+import { Action } from '../actions/actions';
 import { authPageState } from './rootReducer';
 import {
     CHANGE_AUTH_FIELD,
     ChangeAuthField,
     GO_TO_LOGIN_PAGE,
     GO_TO_REGISTRATION_PAGE,
+    GoToLoginPage,
+    GoToRegistrationPage,
     USER_AUTH_FAILURE,
     UserAuthFailure
 } from '../actions/auth';
@@ -17,7 +19,7 @@ import { LOGOUT, Logout } from '../actions/profile';
 
 function goToRegistrationPage(
     state: AuthPageState,
-    action: Action
+    action: GoToRegistrationPage
 ): AuthPageState {
     return {
         ...state,
@@ -34,7 +36,7 @@ function goToRegistrationPage(
 
 function goToLoginPage(
     state: AuthPageState,
-    action: Action
+    action: GoToLoginPage
 ): AuthPageState {
     return {
         ...state,

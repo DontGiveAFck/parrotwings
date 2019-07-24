@@ -1,9 +1,11 @@
-import {combineReducers, ReducersMapObject} from 'redux';
-import {History} from 'history';
-import {connectRouter} from 'connected-react-router';
-import {AuthPage, AuthPageState, Profile, SortDirection, State, TransactionsSortColumn} from '../typings/common';
-import {authReducer} from './auth';
-import {profileReducer} from './profile';
+import { combineReducers, ReducersMapObject } from 'redux';
+import { History } from 'history';
+import { connectRouter } from 'connected-react-router';
+import {
+    AuthPage, AuthPageState, Profile, SortDirection, State, TransactionsSortColumn
+} from '../typings/common';
+import { authReducer } from './auth';
+import { profileReducer } from './profile';
 
 export const authPageState: AuthPageState = {
     page: AuthPage.LOGIN,
