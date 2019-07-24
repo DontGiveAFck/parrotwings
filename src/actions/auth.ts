@@ -1,4 +1,4 @@
-import { AuthField, UserRegistration} from '../typings/common';
+import { AuthField, UserAuth} from '../typings/common';
 
 export const GO_TO_REGISTRATION_PAGE = 'GO_TO_REGISTRATION_PAGE';
 type GO_TO_REGISTRATION_PAGE = typeof GO_TO_REGISTRATION_PAGE;
@@ -33,11 +33,11 @@ type REGISTRATION = typeof REGISTRATION;
 
 export interface Registration {
     type: REGISTRATION;
-    credentials: UserRegistration
+    credentials: UserAuth
 }
 
 export function registation(
-    credentials: UserRegistration
+    credentials: UserAuth
 ): Registration {
     return {
         type: REGISTRATION,
@@ -104,11 +104,11 @@ type LOGIN = typeof LOGIN;
 
 export interface Login {
     type: LOGIN;
-    credentials: UserRegistration;
+    credentials: UserAuth;
 }
 
 export function login(
-    credentials: UserRegistration
+    credentials: UserAuth
 ): Login {
     return {
         type: LOGIN,

@@ -10,7 +10,6 @@ const mapDispatchToProps = (
 });
 
 export default connect(
-    // @ts-ignore
     null,
     mapDispatchToProps
 )(App);

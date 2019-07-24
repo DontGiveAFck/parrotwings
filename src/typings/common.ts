@@ -5,7 +5,7 @@ export interface State {
 
 export interface AuthPageState {
     page: AuthPage,
-    credentials: UserRegistration,
+    credentials: UserAuth,
     errorText?: string
 }
 
@@ -14,8 +14,7 @@ export enum AuthPage {
     REGISTRATION = 'REGISTRATION'
 }
 
-// TODO - общее для регистрации и авторизации - изменить название
-export interface UserRegistration {
+export interface UserAuth {
     email: string,
     password: string,
     rPassword?: string,
@@ -41,7 +40,7 @@ export interface UserInfo {
 export interface TransactionModalData {
     name: string;
     amount: number;
-    suggestedUsersList: [];
+    suggestedUsersList: SuggestedUsersListClientFormat[];
     errorText?: string;
 }
 
@@ -78,4 +77,15 @@ export enum TransactionsFilterType {
     DATE = 'DATE',
     NAME = 'NAME',
     AMOUNT = 'AMOUNT',
+}
+
+export interface SuggestedUsersListApiFormat {
+    id: number;
+    name: string;
+}
+
+export interface SuggestedUsersListClientFormat {
+    key: number;
+    value: string;
+    text: string;
 }

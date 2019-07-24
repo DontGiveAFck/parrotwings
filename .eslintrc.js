@@ -33,7 +33,8 @@ module.exports = {
         "import/no-cycle": "off",
         "react/jsx-no-bind": "off",
         "react/jsx-one-expression-per-line": "off",
-        "react/prefer-stateless-function": "off"
+        "react/prefer-stateless-function": "off",
+        "implicit-arrow-linebreak": "off"
     },
     "settings": {
         "react": {

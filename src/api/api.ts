@@ -1,11 +1,11 @@
 import { fromPromise } from 'rxjs/internal-compatibility';
-import { UserRegistration } from '../typings/common';
+import { UserAuth } from '../typings/common';
 import LocalStorage from '../services/LocalStorage';
 
 const URL = 'http://193.124.114.46:3001';
 
 export default class {
-    static registration(credentials: UserRegistration) {
+    static registration(credentials: UserAuth) {
         const request = fetch(`${URL}/users`, {
             method: 'POST',
             headers: {
@@ -23,7 +23,7 @@ export default class {
         return fromPromise(request);
     }
 
-    static login(credentials: UserRegistration) {
+    static login(credentials: UserAuth) {
         const request = fetch(`${URL}/sessions/create`, {
             method: 'POST',
             headers: {

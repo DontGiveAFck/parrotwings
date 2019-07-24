@@ -1,5 +1,8 @@
-import { UserInfo } from '../typings/common';
-
+import {
+    SuggestedUsersListApiFormat,
+    SuggestedUsersListClientFormat,
+    UserInfo
+} from '../typings/common';
 
 export function mapUserInfo(
     userInfoToken: any
@@ -10,6 +13,12 @@ export function mapUserInfo(
     };
 }
 
-// export function mapUserTransactions() {
-//
-// }
+export function mapSuggestedUsersList(
+    usersList: SuggestedUsersListApiFormat[]
+): SuggestedUsersListClientFormat[] {
+    return usersList.map(user => ({
+        key: user.id,
+        value: user.name,
+        text: user.name
+    }));
+}

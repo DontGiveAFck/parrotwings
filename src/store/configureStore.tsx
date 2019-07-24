@@ -13,11 +13,11 @@ const epicMiddleware = createEpicMiddleware();
 
 export default function configureStore(preloadedState: State) {
     const store = createStore(
-        createRootReducer(history), // root reducer with router state
+        createRootReducer(history),
         preloadedState,
         composeWithDevTools(
             applyMiddleware(
-                routerMiddleware(history), // for dispatching history actions
+                routerMiddleware(history),
                 epicMiddleware
             ),
         ),

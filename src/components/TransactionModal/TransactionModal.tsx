@@ -33,11 +33,6 @@ class TransactionModal extends Component<TransactionModalProps> {
             name, amount, suggestedUsersList, errorText = ''
         } = transactionModalData;
 
-        // TODO - вынести отсюда и переделать
-
-        const mappedUsersList = suggestedUsersList
-        // @ts-ignore
-            .map(user => ({ key: user.id, value: user.name, text: user.name }));
         return (
             <div
                 className={BLOCK()}
@@ -57,7 +52,7 @@ class TransactionModal extends Component<TransactionModalProps> {
                                     onSearchChange={
                                         (e, value) => changeTransactionName(value.searchQuery)
                                     }
-                                    options={mappedUsersList}
+                                    options={suggestedUsersList}
                                     onChange={this.onSelectTransactionName.bind(this)}
                                     ref={this.dropdownRef}
                                     text={name}

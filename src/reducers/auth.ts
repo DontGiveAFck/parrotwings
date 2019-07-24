@@ -1,6 +1,6 @@
 import { Reducer } from 'redux';
 import {
-    AuthField, AuthPage, AuthPageState, State
+    AuthField, AuthPage, AuthPageState
 } from '../typings/common';
 import { Action } from '../actions/action';
 import { authPageState } from './rootReducer';
@@ -12,8 +12,8 @@ import {
     USER_AUTH_FAILURE,
     UserAuthFailure
 } from '../actions/auth';
-import {MAX_USERNAME_LENGTH} from "../constants/numberConstants";
-import {LOGOUT, Logout} from "../actions/profile";
+import { MAX_USERNAME_LENGTH } from '../constants/numberConstants';
+import { LOGOUT, Logout } from '../actions/profile';
 
 function goToRegistrationPage(
     state: AuthPageState,
@@ -102,12 +102,9 @@ function setAuthErrorText(
     };
 }
 
-// TODO - избавиться от tsignore
-// @ts-ignore
 export const authReducer: Reducer<AuthPageState, Action> = (
     state: AuthPageState = authPageState,
-    action: Action,
-    fullState: State
+    action: Action
 ): AuthPageState => {
     switch (action.type) {
         case GO_TO_REGISTRATION_PAGE:

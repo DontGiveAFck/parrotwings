@@ -10,7 +10,7 @@ import {
     TransactionModalData,
     TransactionsSortColumn,
     UserInfo,
-    UserRegistration
+    UserAuth
 } from '../../typings/common';
 import ProfilePage from '../../components/ProfilePage/ProfilePage';
 import {
@@ -73,5 +73,4 @@ const mapDispatchToProps = (
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-    // @ts-ignore
 )(ProfilePage);

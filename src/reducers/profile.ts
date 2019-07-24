@@ -22,10 +22,11 @@ import {
     UpdateSuggestedUsersList
 } from '../actions/profile';
 import {
-    Profile, SortDirection, State, TransactionInfo
+    Profile, SortDirection, TransactionInfo
 } from '../typings/common';
 import { Action } from '../actions/action';
 import { profileState } from './rootReducer';
+import { mapSuggestedUsersList } from '../services/mappers';
 
 function fetchProfileDataSuccess(
     state: Profile,
@@ -33,7 +34,8 @@ function fetchProfileDataSuccess(
 ): Profile {
     const { userInfo, transactionsInfo } = action;
     transactionsInfo.sort(
-        (a: TransactionInfo, b: TransactionInfo) => new Date(b.date).getTime() - new Date(a.date).getTime()
+        (a: TransactionInfo, b: TransactionInfo) =>
+            new Date(b.date).getTime() - new Date(a.date).getTime()
     );
     return {
         ...state,
@@ -98,11 +100,13 @@ function updateSuggestedUsersList(
     state: Profile,
     action: UpdateSuggestedUsersList
 ): Profile {
+    const { suggestedUsersList } = action;
+
     return {
         ...state,
         transactionModalData: {
             ...state.transactionModalData,
-            suggestedUsersList: action.suggestedUsersList
+            suggestedUsersList: mapSuggestedUsersList(suggestedUsersList)
         }
     };
 }
@@ -150,16 +154,15 @@ function changeSortOptions(
     return {
         ...state,
         transactionsInfo: newTransactionsInfo,
-        sortDirection: sortDirection === SortDirection.ASC ? SortDirection.DESC : SortDirection.ASC
+        sortDirection: sortDirection === SortDirection.ASC
+            ? SortDirection.DESC
+            : SortDirection.ASC
     };
 }
 
-// TODO - избавиться от tsignore
-// @ts-ignore
 export const profileReducer: Reducer<Profile, Action> = (
     state: Profile = profileState,
-    action: Action,
-    fullState: State
+    action: Action
 ): Profile => {
     switch (action.type) {
         case FETCH_PROFILE_DATA_SUCCESS:
