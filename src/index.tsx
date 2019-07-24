@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import { Provider } from 'react-redux';
-import App from './containers/AppContainer/AppContainer';
+import AppContainer from './containers/AppContainer/AppContainer';
 import configureStore from './store/configureStore';
 import { initialState } from './reducers/rootReducer';
 
@@ -12,7 +12,7 @@ const store = configureStore(initialState);
 
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+        <AppContainer />
     </Provider>,
     document.getElementById('root')
 );

@@ -1,18 +1,33 @@
 import { ActionsObservable, ofType } from 'redux-observable';
-import { catchError, map, mergeMap } from 'rxjs/operators';
+import {
+    catchError, map, mergeMap
+} from 'rxjs/operators';
 import { of, forkJoin } from 'rxjs';
 import { push } from 'connected-react-router';
-import { REGISTRATION, userAuthFailure, userAuthSuccess } from '../actions/auth';
+import { userAuthFailure } from '../actions/auth';
 import API from '../api/api';
 import LocalStorage from '../services/LocalStorage';
 import {
     CHANGE_TRANSACTION_NAME,
-    ChangeTransactionName, CREATE_TRANSACTION, CreateTransaction,
-    FETCH_PROFILE_DATA, fetchProfileData, FetchProfileData,
-    fetchProfileDataSuccess, updateSuggestedUsersList, createTransactionFailure,
-    closeTransactionModal, LOGOUT, Logout, logout
+    ChangeTransactionName,
+    CREATE_TRANSACTION,
+    CreateTransaction,
+    FETCH_PROFILE_DATA,
+    fetchProfileData,
+    FetchProfileData,
+    fetchProfileDataSuccess,
+    updateSuggestedUsersList,
+    createTransactionFailure,
+    closeTransactionModal,
+    LOGOUT,
+    Logout,
+    logout,
+    FetchProfileDataSuccess,
+    FETCH_PROFILE_DATA_SUCCESS,
+    changeSortOptions
 } from '../actions/profile';
 import { mapUserInfo } from '../services/mappers';
+import { TransactionsSortColumn } from '../typings/common';
 
 export const fetchProfileDataEpic = (
     action$: ActionsObservable<FetchProfileData>
@@ -62,4 +77,11 @@ export const logoutEpic = (
         LocalStorage.removeValue('id_token');
         return of(push('/'));
     })
+);
+
+export const fetchProfileDataSuccessEpic = (
+    action$: ActionsObservable<FetchProfileDataSuccess>,
+) => action$.pipe(
+    ofType(FETCH_PROFILE_DATA_SUCCESS),
+    mergeMap(action => of(changeSortOptions(TransactionsSortColumn.Date)))
 );

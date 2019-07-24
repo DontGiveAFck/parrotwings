@@ -11,7 +11,8 @@ import {
     fetchProfileDataEpic,
     fetchFilteredUsersListEpic,
     createTransactionEpic,
-    logoutEpic
+    logoutEpic,
+    fetchProfileDataSuccessEpic
 } from './profile';
 
 export default combineEpics(
@@ -23,5 +24,6 @@ export default combineEpics(
     fetchProfileDataEpic,
     fetchFilteredUsersListEpic,
     createTransactionEpic,
-    logoutEpic
+    logoutEpic,
+    fetchProfileDataSuccessEpic
 );

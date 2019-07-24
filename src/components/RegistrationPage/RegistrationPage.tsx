@@ -33,7 +33,11 @@ class RegistrationPage extends Component<RegistrationPageProps> {
         return (
             <div
                 className={BLOCK()}
-                style={{ backgroundImage: `url(${background})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}
+                style={{
+                    backgroundImage: `url(${background})`,
+                    backgroundSize: 'cover',
+                    backgroundRepeat: 'no-repeat'
+                }}
             >
                 {this.getTitle()}
                 {this.getRegistrationForm()}
@@ -57,7 +61,6 @@ class RegistrationPage extends Component<RegistrationPageProps> {
         const { registrationFormVisible, registrationButtonActive } = this.state;
         const {
             openLoginPageClick,
-            registrationButtonClick,
             onChangeAuthField,
             errorText,
             password,
