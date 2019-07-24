@@ -5,7 +5,8 @@ import {
     CHANGE_NAME_FILTER_TEXT,
     CHANGE_SORT_OPTIONS,
     CHANGE_TRANSACTION_AMOUNT,
-    CHANGE_TRANSACTION_NAME, ChangeNameFilterText,
+    CHANGE_TRANSACTION_NAME,
+    ChangeNameFilterText,
     ChangeSortOptions,
     ChangeTransactionAmount,
     ChangeTransactionName,
@@ -23,7 +24,7 @@ import {
     UpdateSuggestedUsersList
 } from '../actions/profile';
 import {
-    Profile, SortDirection, TransactionInfo
+    Profile, SortDirection, TransactionInfo, TransactionsSortColumn
 } from '../typings/common';
 import { Action } from '../actions/actions';
 import { profileState } from './rootReducer';
@@ -142,6 +143,15 @@ function changeSortOptions(
 ): Profile {
     const { column: clickedColumn } = action;
     const { transactionsInfo, sortColumn, sortDirection } = state;
+
+    if (action.isDefault) {
+        return {
+            ...state,
+            sortColumn: TransactionsSortColumn.Date,
+            transactionsInfo: _.sortBy(transactionsInfo, [TransactionsSortColumn.Date]).reverse(),
+            sortDirection: SortDirection.DESC
+        };
+    }
 
     if (sortColumn !== clickedColumn) {
         return {

@@ -196,14 +196,17 @@ type CHANGE_SORT_OPTIONS = typeof CHANGE_SORT_OPTIONS;
 export interface ChangeSortOptions {
     type: CHANGE_SORT_OPTIONS;
     column: TransactionsSortColumn;
+    isDefault?: boolean;
 }
 
 export function changeSortOptions(
     column: TransactionsSortColumn,
+    isDefault?: boolean
 ): ChangeSortOptions {
     return {
         type: CHANGE_SORT_OPTIONS,
         column,
+        isDefault
     };
 }
 

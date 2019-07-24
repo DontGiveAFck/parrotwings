@@ -83,5 +83,5 @@ export const fetchProfileDataSuccessEpic = (
     action$: ActionsObservable<FetchProfileDataSuccess>,
 ) => action$.pipe(
     ofType(FETCH_PROFILE_DATA_SUCCESS),
-    mergeMap(action => of(changeSortOptions(TransactionsSortColumn.Date)))
+    mergeMap(action => of(changeSortOptions(TransactionsSortColumn.Date, true)))
 );
