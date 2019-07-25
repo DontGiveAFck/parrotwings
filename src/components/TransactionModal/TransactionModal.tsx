@@ -61,7 +61,6 @@ class TransactionModal extends Component<TransactionModalProps> {
                                     placeholder="Amount"
                                     type="text"
                                     pattern="^-?[0-9]+$"
-                                    // @ts-ignore
                                     onChange={e => this.onChangeTransactionAmount(e.target.value)}
                                 />
                             </Form.Field>
